@@ -22,19 +22,6 @@ public final class IceRink {
     }
 }
 
-public enum StoneColor: Codable, Hashable, CaseIterable {
-    case yellow, red, blue, white
-    
-    var color: Color {
-        switch self {
-        case .yellow: .yellow
-        case .red: .red
-        case .blue: .blue
-        case .white: .white
-        }
-    }
-}
-
 /// An individual rating given to an ice rink.
 public struct IceRating: Codable {
     
