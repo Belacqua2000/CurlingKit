@@ -113,18 +113,17 @@ public final class Game {
     public func adjustEndsFromConfiguration(using context: ModelContext) {
         withAnimation {
             while ends?.count ?? 0 < configuration.numberOfEnds {
-                print(ends?.count)
+//                print(ends?.count)
                 addEnd(using: context)
             }
             
             while ends?.count ?? 0 > configuration.numberOfEnds {
-                print(ends?.count)
-                ends?.sort(using: SortDescriptor(\.number))
-                if let lastEnd = ends?.last {
-                    ends?.removeLast()
+//                print(ends?.count)
+                if let lastEnd = ends?.sorted(using: SortDescriptor(\.number)).last {
                     context.delete(lastEnd)
                 }
             }
+            try? context.save()
         }
     }
     
