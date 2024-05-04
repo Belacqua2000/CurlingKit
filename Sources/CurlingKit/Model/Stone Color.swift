@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-public enum StoneColor: Codable, Hashable, CaseIterable {
+public enum StoneColor: Int, Codable, Hashable, CaseIterable, Identifiable {
     case yellow, red, blue, white
+    
+    public var id: Int { rawValue }
     
     public var title: String {
         switch self {
