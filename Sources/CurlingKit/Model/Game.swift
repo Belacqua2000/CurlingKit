@@ -101,7 +101,7 @@ public final class Game {
     /// - Returns: The proportion of ends which meet the statistic.  This number is between 0–1.
     public func valueFor(_ endStatistic: EndEfficiency) -> Double? {
         let qualifyingEnds = ends.filter(endStatistic.qualifiesForStatistic)
-        guard qualifyingEnds.isEmpty else { return nil }
+        guard qualifyingEnds.count > 1 else { return nil }
         return Double(qualifyingEnds.filter(endStatistic.statisticMet).count) / Double(qualifyingEnds.count)
     }
 }
