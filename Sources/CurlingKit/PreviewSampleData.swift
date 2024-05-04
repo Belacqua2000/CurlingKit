@@ -17,7 +17,6 @@ public let previewContainer: ModelContainer = {
 
 public let sampleGames: [Game] = {
     let game = Game(on: .now, against: Team(name: "Dunfermline"))
-    game.addEnd()
 //    let stone1 = Stone(end: game.ends.first!, number: 1, shot: .draw, direction: .center, handle: .clockwise, iceAccuracy: .onTheBrush, weightAccuracy: .heavy)
     return [game]
 }()
@@ -29,7 +28,9 @@ public let previewGame: Game = {
 
 @MainActor
 public let previewEnd: End = {
-    try! previewContainer.mainContext.fetch(FetchDescriptor<Game>()).first!.ends!.first!
+    let game = previewGame
+    game.addEnd(using: previewContainer.mainContext)
+    return game.ends!.first!
 }()
 
 //@MainActor
