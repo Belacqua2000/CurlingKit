@@ -22,7 +22,7 @@ public struct EndEfficiency: Statistic, Identifiable {
     
     public static let hammerEfficiency = Self(
         title: "Hammer Efficiency",
-        description: nil,
+        description: "Ends where your team had the hammer and scored ≥ 2.",
         qualifiesForStatistic: { end in
             end.teamWithHammer == .own
         },
@@ -33,7 +33,7 @@ public struct EndEfficiency: Statistic, Identifiable {
     
     public static let forceEfficiency = Self(
         title: "Force Efficiency",
-        description: nil,
+        description: "Ends where the opponent had the hammer and scored 1.",
         qualifiesForStatistic: { end in
             end.teamWithHammer == .opposition
         },
@@ -44,7 +44,7 @@ public struct EndEfficiency: Statistic, Identifiable {
     
     public static let stealEfficiency = Self(
         title: "Steal Efficiency",
-        description: nil,
+        description: "Ends where the opponent had the hammer and you scored.",
         qualifiesForStatistic: { end in
             end.teamWithHammer == .opposition
         },
