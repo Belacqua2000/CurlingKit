@@ -7,10 +7,12 @@
 
 import Foundation
 
-public struct EndEfficiency: Statistic {
+public struct EndEfficiency: Statistic, Identifiable {
     public var title: String
     
     public var description: String?
+    
+    public var id: String { title }
     
     /// Determines whether an end qualifies for the statistic.
     var qualifiesForStatistic: ((End) -> Bool)
@@ -19,7 +21,7 @@ public struct EndEfficiency: Statistic {
     var statisticMet: ((End) -> Bool)
     
     public static let hammerEfficiency = Self(
-        title: "Steal Rate",
+        title: "Hammer Efficiency",
         description: nil,
         qualifiesForStatistic: { end in
             end.teamWithHammer == .own
@@ -30,7 +32,7 @@ public struct EndEfficiency: Statistic {
     )
     
     public static let forceEfficiency = Self(
-        title: "Steal Rate",
+        title: "Force Efficiency",
         description: nil,
         qualifiesForStatistic: { end in
             end.teamWithHammer == .opposition
@@ -41,7 +43,7 @@ public struct EndEfficiency: Statistic {
     )
     
     public static let stealEfficiency = Self(
-        title: "Steal Rate",
+        title: "Steal Efficiency",
         description: nil,
         qualifiesForStatistic: { end in
             end.teamWithHammer == .opposition
