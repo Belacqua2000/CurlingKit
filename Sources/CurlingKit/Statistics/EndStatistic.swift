@@ -27,7 +27,7 @@ public struct EndEfficiency: Statistic, Identifiable {
             end.teamWithHammer == .own
         },
         statisticMet: { end in
-            end.teamWithHammer == .own && end.scoringTeam == .own
+            end.teamWithHammer == .own && end.scoringTeam == .own && end.score >= 2
         }
     )
     
