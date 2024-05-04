@@ -48,9 +48,30 @@ public final class Game {
     /// Additional points added to the team.
     public var penaltyPoints: Int = 0
     
-    /// The outcome of the game.
-    public var outcome: Outcome?
+    public var ownScore: Int {
+        ends
+            .filter { $0.scoringTeam == .own }
+            .map { $0.score }
+            .reduce(0, +)
+    }
     
+    public var oppositionScore: Int {
+        ends
+            .filter { $0.scoringTeam == .opposition }
+            .map { $0.score }
+            .reduce(0, +)
+    }
+    
+    /// The outcome of the game.
+    public var outcome: Outcome? {
+        if ownScore == oppositionScore {
+            return .peel
+        } else if ownScore < oppositionScore {
+            return .lose
+        } else {
+            return .win
+        }
+    }
     
     public init(
         on date: Date,
@@ -65,6 +86,7 @@ public final class Game {
         ends.append(End(game: self, number: ends.count + 1))
     }
     
+    /// The outcome of a game.
     public enum Outcome: Codable {
         case lose, win, peel
         public var title: String {
