@@ -15,7 +15,8 @@ public final class Competition {
     public var title: String
     
     /// The games you have played in this competition.
-    public var games: Array<Game> = []
+    @Relationship(inverse: \Game.competition)
+    public var games: Array<Game>? = []
     
     /// The rules associated with this competition.
     public var configuration: GameConfiguration

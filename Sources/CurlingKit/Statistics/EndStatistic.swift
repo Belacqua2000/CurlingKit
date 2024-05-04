@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct EndEfficiency: Statistic, Identifiable {
+public struct EndEfficiency: Identifiable {
     public var title: String
     
     public var description: String?
@@ -33,7 +33,7 @@ public struct EndEfficiency: Statistic, Identifiable {
     
     public static let forceEfficiency = Self(
         title: "Force Efficiency",
-        description: "Ends where the opponent had the hammer and scored 1.",
+        description: "Ends where your opponent had the hammer and scored 1.",
         qualifiesForStatistic: { end in
             end.teamWithHammer == .opposition
         },
@@ -44,7 +44,7 @@ public struct EndEfficiency: Statistic, Identifiable {
     
     public static let stealEfficiency = Self(
         title: "Steal Efficiency",
-        description: "Ends where the opponent had the hammer and you scored.",
+        description: "Ends where your opponent had the hammer and you scored.",
         qualifiesForStatistic: { end in
             end.teamWithHammer == .opposition
         },

@@ -36,14 +36,16 @@ public final class Game {
     public var teamWithHammer: RelativeTeam = RelativeTeam.own
     
     /// The color of stones the player's own team are delivering..
-    public var ownTeamStoneColor: StoneColor?
+    public var ownTeamStoneColor: StoneColor = StoneColor.red
     
     /// The color of stones the opposition team are delivering..
-    public var oppositionTeamStoneColor: StoneColor?
+    public var oppositionTeamStoneColor: StoneColor = StoneColor.yellow
     
     /// The ends of this game.
     @Relationship(deleteRule: .cascade, inverse: \End.game)
     public var ends: [End]? = []
+    
+    public var endCount: Int { ends?.count ?? 20}
     
     /// Additional points added to the team.
     public var penaltyPoints: Int = 0
@@ -98,6 +100,30 @@ public final class Game {
     ) {
         self.date = date
         self.opponent = opponent
+        
+        title = Self.defaultTitle(for: date)
+    }
+    
+    static func defaultTitle(for date: Date) -> String {
+        let weekDay = date.formatted(.dateTime.weekday(.wide))
+        let hour = Calendar.current.component(.hour, from: date)
+        
+        let timeOfDay = switch hour {
+        case 0...11: "Morning"
+        case 12...17: "Afternoon"
+        case 18...23: "Evening"
+        default: "Morning"
+        }
+        
+        return [weekDay, timeOfDay, "Game"].joined(separator: " ")
+    }
+    
+    public func dateChanged(oldDate: Date, newDate: Date) {
+        if title == Self.defaultTitle(for: oldDate) {
+            withAnimation {
+                title = Self.defaultTitle(for: newDate)
+            }
+        }
     }
     
     /// Add another end to this game.
@@ -107,6 +133,7 @@ public final class Game {
         }
         let end = End(number: (ends?.count ?? 0) + 1)
         end.game = self
+        ends?.append(end)
         context.insert(end)
     }
     
@@ -114,13 +141,14 @@ public final class Game {
         withAnimation {
             while ends?.count ?? 0 < configuration.numberOfEnds {
                 addEnd(using: context)
-                try? context.save()
+//                try? context.save()
             }
             
             while ends?.count ?? 0 > configuration.numberOfEnds {
                 if let lastEnd = ends?.sorted(using: SortDescriptor(\.number)).last {
+                    ends?.removeAll { $0.id == lastEnd.id }
                     context.delete(lastEnd)
-                    try? context.save()
+//                    try? context.save()
                 }
             }
         }
@@ -148,7 +176,7 @@ public final class Game {
     /// - Returns: The proportion of ends which meet the statistic.  This number is between 0–1.
     public func valueFor(_ endStatistic: EndEfficiency) -> Double? {
         let qualifyingEnds = ends?.filter(endStatistic.qualifiesForStatistic) ?? []
-        guard qualifyingEnds.count > 1 else { return nil }
+        guard qualifyingEnds.count > 0 else { return nil }
         return Double(qualifyingEnds.filter(endStatistic.statisticMet).count) / Double(qualifyingEnds.count)
     }
 }
