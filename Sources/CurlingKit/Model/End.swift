@@ -5,7 +5,8 @@ import SwiftData
 public final class End {
     // MARK: - SwiftData Properties
     /// The game which the end belongs to.
-    public var game: Game
+    @Relationship
+    public var game: Game?
     
     /// The index of the game.
     ///
@@ -27,7 +28,8 @@ public final class End {
     
     /// Which team has the last stone.
     public var teamWithHammer: Game.RelativeTeam {
-        if let previousEnd = game.ends.last(where: { $0.number < number }) {
+        guard let game else { return .own }
+        if let previousEnd = game.ends?.last(where: { $0.number < number }) {
             
             return switch previousEnd.scoringTeam {
             case .own: .opposition
@@ -40,8 +42,7 @@ public final class End {
         }
     }
     
-    public init(game: Game, number: Int) {
-        self.game = game
+    public init(number: Int) {
         self.number = number
     }
 }

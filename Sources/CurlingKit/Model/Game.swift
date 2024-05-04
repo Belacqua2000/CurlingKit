@@ -1,5 +1,5 @@
 import SwiftData
-import Foundation
+import SwiftUI
 
 /// A curling match between two teams.
 @Model
@@ -46,8 +46,8 @@ public final class Game {
     public var oppositionTeamStoneColor: StoneColor?
     
     /// The ends of this game.
-    @Relationship(deleteRule: .cascade)
-    public var ends: [End] = []
+    @Relationship(deleteRule: .cascade, inverse: \End.game)
+    public var ends: [End]? = []
     
     /// Additional points added to the team.
     public var penaltyPoints: Int = 0
@@ -70,17 +70,19 @@ public final class Game {
     }
     
     public var ownScore: Int {
-        ends
+        ends?
             .filter { $0.scoringTeam == .own }
             .map { $0.score }
             .reduce(0, +)
+        ?? 0
     }
     
     public var oppositionScore: Int {
-        ends
+        ends?
             .filter { $0.scoringTeam == .opposition }
             .map { $0.score }
             .reduce(0, +)
+        ?? 0
     }
     
     /// The outcome of the game.
@@ -104,17 +106,23 @@ public final class Game {
     
     /// Add another end to this game.
     public func addEnd() {
-        ends.append(End(game: self, number: ends.count + 1))
+        if ends == nil {
+            ends = []
+        }
+        ends?.append(End(number: ends?.count ?? 0 + 1))
     }
     
     public func adjustEndsFromConfiguration() {
-        while ends.count < configuration.numberOfEnds {
-            addEnd()
-        }
-        
-        while ends.count > configuration.numberOfEnds {
-            let lastEnd = ends.removeLast()
-            modelContext?.delete(lastEnd)
+        withAnimation {
+            while ends?.count ?? 0 < configuration.numberOfEnds {
+                addEnd()
+            }
+            
+            while ends?.count ?? 0 > configuration.numberOfEnds {
+                if let lastEnd = ends?.sorted(using: SortDescriptor(\.number)).last {
+                    modelContext?.delete(lastEnd)
+                }
+            }
         }
     }
     
@@ -139,7 +147,7 @@ public final class Game {
     /// - Parameter endStatistic: The statistic you are calculating.
     /// - Returns: The proportion of ends which meet the statistic.  This number is between 0–1.
     public func valueFor(_ endStatistic: EndEfficiency) -> Double? {
-        let qualifyingEnds = ends.filter(endStatistic.qualifiesForStatistic)
+        let qualifyingEnds = ends?.filter(endStatistic.qualifiesForStatistic) ?? []
         guard qualifyingEnds.count > 1 else { return nil }
         return Double(qualifyingEnds.filter(endStatistic.statisticMet).count) / Double(qualifyingEnds.count)
     }

@@ -29,7 +29,7 @@ public let previewGame: Game = {
 
 @MainActor
 public let previewEnd: End = {
-    try! previewContainer.mainContext.fetch(FetchDescriptor<Game>()).first!.ends.first!
+    try! previewContainer.mainContext.fetch(FetchDescriptor<Game>()).first!.ends!.first!
 }()
 
 //@MainActor
