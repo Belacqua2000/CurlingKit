@@ -30,6 +30,9 @@ public struct GameConfiguration: Equatable, Codable {
         /// The team with the largest number of won ends is used.
         case numberOfEnds
         
+        /// The winner is decided by some other method.
+        case other
+        
         public var title: String {
             switch self {
             case .none:
@@ -40,6 +43,8 @@ public struct GameConfiguration: Equatable, Codable {
                 "Draw Shot Challenge"
             case .numberOfEnds:
                 "Most Ends Won"
+            case .other:
+                "Other"
             }
         }
     }
