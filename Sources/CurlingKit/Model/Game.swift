@@ -113,9 +113,8 @@ public final class Game {
         }
         
         while ends.count > configuration.numberOfEnds {
-            if let lastEnd = ends.last {
-                modelContext?.delete(lastEnd)
-            }
+            let lastEnd = ends.removeLast()
+            modelContext?.delete(lastEnd)
         }
     }
     
