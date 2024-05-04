@@ -2,11 +2,11 @@ import SwiftData
 
 @Model
 public final class Team {
-    var name: String
+    public var name: String
     
-    var players: [Player]
+    public var players: [Player]
     
-    init(name: String, players: [Player] = []) {
+    public init(name: String, players: [Player] = []) {
         self.name = name
         self.players = players
     }
@@ -14,23 +14,23 @@ public final class Team {
 
 
 @Model
-final class Player {
+public final class Player {
     
     /// The name of the player.
-    var name: String
+    public var name: String
     
     /// The teams which the player is part of.
-    var teams: [Team]
+    public var teams: [Team]
     
     /// Whether a player is left- or right-handed
-    var handedness: Handedness?
+    public var handedness: Handedness?
     
-    init(name: String, teams: [Team]) {
+    public init(name: String, teams: [Team]) {
         self.name = name
         self.teams = teams
     }
 }
 
-enum Handedness: Codable {
+public enum Handedness: Codable {
     case rightHanded, leftHanded
 }

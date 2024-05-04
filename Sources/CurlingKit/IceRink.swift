@@ -17,7 +17,7 @@ public final class IceRink {
         return CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
     }
     
-    init(name: String) {
+    public init(name: String) {
         self.name = name
     }
 }
