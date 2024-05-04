@@ -15,7 +15,9 @@ public struct GameConfiguration: Equatable, Codable {
     public var tiebreaker: Tiebreaker = .none
     
     /// The ways in which a tie in points can be resolved.
-    public enum Tiebreaker: Codable {
+    public enum Tiebreaker: Int, Codable, CaseIterable, Identifiable {
+        public var id: Int { rawValue }
+        
         /// No tiebeaker is used, and the game results in a peel.
         case none
         
@@ -27,6 +29,19 @@ public struct GameConfiguration: Equatable, Codable {
         
         /// The team with the largest number of won ends is used.
         case numberOfEnds
+        
+        public var title: String {
+            switch self {
+            case .none:
+                "None"
+            case .extraEnd:
+                "Extra End"
+            case .drawShotChallenge:
+                "Draw Shot Challenge"
+            case .numberOfEnds:
+                "Most Ends Won"
+            }
+        }
     }
     
     /// The display name for a given game configuration.
