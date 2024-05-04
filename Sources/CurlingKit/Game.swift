@@ -52,8 +52,8 @@ public final class Game {
     public var outcome: Outcome?
     
     
-    init(
-        on date: Date, 
+    public init(
+        on date: Date,
         against opponent: Team? = nil
     ) {
         self.date = date
@@ -67,7 +67,7 @@ public final class Game {
     
     public enum Outcome: Codable {
         case lose, win, peel
-        var title: String {
+        public var title: String {
             switch self {
             case .lose:
                 "Lose"
@@ -85,6 +85,15 @@ public final class Game {
         
         /// The team which the user is playing.
         case opposition
+        
+        public var title: String {
+            switch self {
+            case .own:
+                "Own Team"
+            case .opposition:
+                "Opposition"
+            }
+        }
     }
     
     /// Calculate the number of ends which match the given statistic.
@@ -95,38 +104,4 @@ public final class Game {
         guard qualifyingEnds.isEmpty else { return nil }
         return Double(qualifyingEnds.filter(endStatistic.statisticMet).count) / Double(qualifyingEnds.count)
     }
-}
-
-/// The position in a curling team.
-public enum Position: Int, Codable, CaseIterable, Identifiable {
-    case lead = 1, second, third, skip
-    
-    var name: String {
-        switch self {
-        case .lead:
-            "Lead"
-        case .second:
-            "Second"
-        case .third:
-            "Third"
-        case .skip:
-            "Skip"
-        }
-    }
-    
-    /// The stones which are typically played by the position.
-    public var recommendedStones: Set<Int> {
-        switch self {
-        case .lead:
-            [1,2]
-        case .second:
-            [3,4]
-        case .third:
-            [5,6]
-        case .skip:
-            [7,8]
-        }
-    }
-    
-    public var id: Int { rawValue }
 }

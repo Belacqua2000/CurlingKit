@@ -7,7 +7,7 @@ public final class Stone {
         
         public var id: Int { rawValue }
         
-        var name: String {
+        public var name: String {
             switch self {
             case .draw:
                 "Draw"
@@ -18,7 +18,7 @@ public final class Stone {
             }
         }
         
-        var icon: String {
+        public var icon: String {
             switch self {
             case .draw:
                 "target"
@@ -35,7 +35,7 @@ public final class Stone {
         
         public var id: Int { rawValue }
         
-        var name: String {
+        public var name: String {
             switch self {
             case .clockwise:
                 "Clockwise"
@@ -44,7 +44,7 @@ public final class Stone {
             }
         }
         
-        var icon: String {
+        public var icon: String {
             switch self {
             case .clockwise:
                 "arrow.clockwise"
@@ -62,7 +62,7 @@ public final class Stone {
         
         public var id: Int { rawValue }
         
-        var name: String {
+        public var name: String {
             switch self {
             case .left:
                 "Left"
@@ -79,7 +79,7 @@ public final class Stone {
         
         public var id: Int { rawValue }
         
-        var name: String {
+        public var name: String {
             switch self {
             case .tight:
                 "Tight"
@@ -96,7 +96,7 @@ public final class Stone {
         
         public var id: Int { rawValue }
         
-        var name: String {
+        public var name: String {
             switch self {
             case .light:
                 "Light"
