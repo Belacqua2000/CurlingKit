@@ -30,7 +30,11 @@ public final class Game {
     public var iceRating: IceRating?
     
     /// The configuration of the game.
-    public var configuration: GameConfiguration = GameConfiguration.standard8Ends
+    public var configuration: GameConfiguration = GameConfiguration.standard8Ends {
+        didSet {
+            adjustEndsFromConfiguration()
+        }
+    }
     
     /// Whether you start with the hammer.
     public var teamWithHammer: RelativeTeam = RelativeTeam.own
@@ -47,6 +51,23 @@ public final class Game {
     
     /// Additional points added to the team.
     public var penaltyPoints: Int = 0
+    
+    // MARK: - Outcomes
+    
+    /// The outcome of a game.
+    public enum Outcome: Codable {
+        case lose, win, peel
+        public var title: String {
+            switch self {
+            case .lose:
+                "Lose"
+            case .win:
+                "Win"
+            case .peel:
+                "Peel"
+            }
+        }
+    }
     
     public var ownScore: Int {
         ends
@@ -86,17 +107,14 @@ public final class Game {
         ends.append(End(game: self, number: ends.count + 1))
     }
     
-    /// The outcome of a game.
-    public enum Outcome: Codable {
-        case lose, win, peel
-        public var title: String {
-            switch self {
-            case .lose:
-                "Lose"
-            case .win:
-                "Win"
-            case .peel:
-                "Peel"
+    public func adjustEndsFromConfiguration() {
+        while ends.count < configuration.numberOfEnds {
+            addEnd()
+        }
+        
+        while ends.count > configuration.numberOfEnds {
+            if let lastEnd = ends.last {
+                modelContext?.delete(lastEnd)
             }
         }
     }
