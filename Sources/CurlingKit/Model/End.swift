@@ -1,4 +1,5 @@
 import SwiftData
+import Foundation
 
 /// A subunit of a game.
 @Model
@@ -29,7 +30,7 @@ public final class End {
     /// Which team has the last stone.
     public var teamWithHammer: Game.RelativeTeam {
         guard let game else { return .own }
-        if let previousEnd = game.ends?.last(where: { $0.number < number }) {
+        if let previousEnd = game.ends?.sorted(using: SortDescriptor(\.number)).last(where: { $0.number < number }) {
             
             return switch previousEnd.scoringTeam {
             case .own: .opposition

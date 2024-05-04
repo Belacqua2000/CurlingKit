@@ -33,4 +33,13 @@ public enum StoneColor: Int, Codable, Hashable, CaseIterable, Identifiable {
         case .white: .white
         }
     }
+    
+    public var complementaryStoneColor: Self {
+        switch self {
+        case .yellow: .red
+        case .red: .yellow
+        case .blue: .white
+        case .white: .blue
+        }
+    }
 }
