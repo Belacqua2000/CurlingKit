@@ -8,7 +8,7 @@
 import SwiftUI
 
 public enum StoneColor: Int, Codable, Hashable, CaseIterable, Identifiable {
-    case yellow, red, blue, white
+    case yellow, red, blue, white, green
     
     public var id: Int { rawValue }
     
@@ -22,6 +22,8 @@ public enum StoneColor: Int, Codable, Hashable, CaseIterable, Identifiable {
             "Blue"
         case .white:
             "White"
+        case .green:
+            "Green"
         }
     }
     
@@ -31,6 +33,7 @@ public enum StoneColor: Int, Codable, Hashable, CaseIterable, Identifiable {
         case .red: .red
         case .blue: .blue
         case .white: .white
+        case .green: .green
         }
     }
     
@@ -40,6 +43,7 @@ public enum StoneColor: Int, Codable, Hashable, CaseIterable, Identifiable {
         case .red: .yellow
         case .blue: .white
         case .white: .blue
+        case .green: .white
         }
     }
 }
