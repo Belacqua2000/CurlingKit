@@ -1,7 +1,15 @@
 import SwiftUI
 
 /// The rules of a curling game.
-public struct GameConfiguration: Equatable, Codable {
+public struct GameConfiguration: Equatable, Codable, CaseIterable {
+    public init(numberOfEnds: Int, stonesPerEnd: Int, tiebreaker: GameConfiguration.Tiebreaker = .none, title: String? = nil, icon: String? = nil) {
+        self.numberOfEnds = numberOfEnds
+        self.stonesPerEnd = stonesPerEnd
+        self.tiebreaker = tiebreaker
+        self.title = title
+        self.icon = icon
+    }
+    
     
     /// The number of ends played in the game.
     ///
@@ -56,10 +64,10 @@ public struct GameConfiguration: Equatable, Codable {
     public var icon: String?
     
     /// A  game of curling with eight ends and no tiebreak.
-    static let standard8Ends: Self = Self(numberOfEnds: 8, stonesPerEnd: 8, title: "Standard 8 Ends", icon: "8.circle")
+    public static let standard8Ends: Self = Self(numberOfEnds: 8, stonesPerEnd: 8, title: "Standard 8 Ends", icon: "8.circle")
     
     /// A  game of curling with ten ends and no tiebreak.
-    static let standard10Ends: Self = Self(numberOfEnds: 10, stonesPerEnd: 8, title: "Standard 10 Ends", icon: "10.circle")
+    public static let standard10Ends: Self = Self(numberOfEnds: 10, stonesPerEnd: 8, title: "Standard 10 Ends", icon: "10.circle")
     
-    static var allCases: [GameConfiguration] = [.standard8Ends, .standard10Ends]
+    public static var allCases: [GameConfiguration] = [.standard8Ends, .standard10Ends]
 }

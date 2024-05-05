@@ -19,9 +19,9 @@ public final class Competition {
     public var games: Array<Game>? = []
     
     /// The rules associated with this competition.
-    public var configuration: GameConfiguration
+    public var configuration: GameConfiguration?
     
-    public init(title: String, configuration: GameConfiguration) {
+    public init(title: String, configuration: GameConfiguration? = nil) {
         self.title = title
         self.configuration = configuration
     }
