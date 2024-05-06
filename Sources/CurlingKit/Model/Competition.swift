@@ -22,7 +22,7 @@ public final class Competition {
     public var configuration: GameConfiguration?
     
     public init(title: String, configuration: GameConfiguration? = nil) {
-        self.title = title
+        self.title = title.isEmpty ? "Untitled Competition" : title
         self.configuration = configuration
     }
 }
