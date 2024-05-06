@@ -16,7 +16,7 @@ public let previewContainer: ModelContainer = {
 }()
 
 public let sampleGames: [Game] = {
-    let game = Game(on: .now, against: Team(name: "Dunfermline"))
+    let game = Game(on: .now, against: "Dunfermline")
 //    let stone1 = Stone(end: game.ends.first!, number: 1, shot: .draw, direction: .center, handle: .clockwise, iceAccuracy: .onTheBrush, weightAccuracy: .heavy)
     return [game]
 }()

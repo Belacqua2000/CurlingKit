@@ -21,7 +21,7 @@ public final class Game {
     // MARK: - Configuration
     
     /// The opposition team.
-    public var opponent: Team?
+    public var opponent = String()
     
     /// The competition this game is part of.
     public var competition: Competition?
@@ -96,7 +96,7 @@ public final class Game {
     
     public init(
         on date: Date,
-        against opponent: Team? = nil
+        against opponent: String = ""
     ) {
         self.date = date
         self.opponent = opponent
