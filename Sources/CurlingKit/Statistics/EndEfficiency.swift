@@ -1,5 +1,5 @@
 //
-//  EndStatistic.swift
+//  EndEfficiency.swift
 //
 //
 //  Created by Nick Baughan on 03/05/2024.
@@ -7,7 +7,9 @@
 
 import Foundation
 
-public struct EndEfficiency: Identifiable {
+public struct EndEfficiency: Statistic, Identifiable {
+    public var icon: String?
+    
     public var title: String
     
     public var description: String?
@@ -19,6 +21,8 @@ public struct EndEfficiency: Identifiable {
     
     /// Determines whether an end meets the statistic criteria.
     var statisticMet: ((End) -> Bool)
+    
+    public static var allCases: [EndEfficiency] = [.hammerEfficiency, .forceEfficiency, .stealEfficiency]
     
     public static let hammerEfficiency = Self(
         title: "Hammer Efficiency",
