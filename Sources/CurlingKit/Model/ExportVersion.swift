@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-internal protocol ExportVersion: Codable {
+public protocol ExportVersion: Codable {
     associatedtype Model: PersistentModel
     static var version: Int { get }
     static var fileExtension: String { get }

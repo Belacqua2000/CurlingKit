@@ -10,35 +10,35 @@ import SwiftData
 
 struct EndFile {
     
-    struct Version1: ExportVersion {
-        static var fileExtension: String = ""
+    public struct Version1: ExportVersion {
+        public static var fileExtension: String = ""
         
         var fileName: String {
             number.formatted()
         }
         
-        static var version: Int = 1
+        public static var version: Int = 1
         
         /// The index of the end.
         ///
         /// This is typically between 1 and 8.
-        public var number: Int = 0
+        var number: Int = 0
         
         /// Whether this end has been played.
-        public var played: Bool = true
+        var played: Bool = true
         
-        public var score: Int = 0
-        public var scoringTeam: Game.RelativeTeam?
+        var score: Int = 0
+        var scoringTeam: Game.RelativeTeam?
         
         
-        init?(from model: End) {
+        public init?(from model: End) {
             number = model.number
             played = model.played
             score = model.score
             scoringTeam = model.scoringTeam
         }
         
-        func modelFromFile(using context: ModelContext) -> End {
+        public func modelFromFile(using context: ModelContext) -> End {
             let newEnd = End(number: number)
             newEnd.played = played
             newEnd.score = score

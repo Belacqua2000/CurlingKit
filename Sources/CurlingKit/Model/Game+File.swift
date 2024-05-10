@@ -8,40 +8,40 @@
 import Foundation
 import SwiftData
 
-struct GameFile {
+public struct GameFile {
     
-    struct Version1: ExportVersion {
-        static var fileExtension: String = "curlinggame"
+    public struct Version1: ExportVersion {
+        public static var fileExtension: String = "curlinggame"
         
-        var fileName: String {
+        public var fileName: String {
             title
         }
         
-        static var version: Int = 1
+        public static var version: Int = 1
         
         /// A user-configurable title given to the game.
-        public var title: String
+        var title: String
         
         /// Additional notes written about the game.
-        public var notes: String
+        var notes: String
         
         /// The start date when the game took place.
-        public var date: Date
+        var date: Date
         
         /// The opposition team.
-        public var opponent = String()
+        var opponent = String()
         
         /// Ends
-        public var ends = [EndFile.Version1]()
+        var ends = [EndFile.Version1]()
         
-        init?(from model: Game) {
+        public init?(from model: Game) {
             title = model.title
             date = model.date
             notes = model.notes
             ends = model.ends?.compactMap { EndFile.Version1(from: $0) } ?? []
         }
         
-        func modelFromFile(using context: ModelContext) -> Game {
+        public func modelFromFile(using context: ModelContext) -> Game {
             let newGame = Game(on: date)
             newGame.notes = notes
             newGame.opponent = opponent
