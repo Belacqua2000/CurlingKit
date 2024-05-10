@@ -8,18 +8,15 @@
 import Foundation
 import SwiftData
 
-internal protocol ExportVersion: Codable {
-    associatedtype Model: PersistentModel
-    static var version: Int { get }
-    
-    func modelFromFile(using context: ModelContext) -> Model
-    
-    init?(from model: Model)
-}
-
 struct GameFile {
     
     struct Version1: ExportVersion {
+        static var fileExtension: String = "curlinggame"
+        
+        var fileName: String {
+            title
+        }
+        
         static var version: Int = 1
         
         /// A user-configurable title given to the game.
