@@ -9,7 +9,7 @@ public final class End {
     @Relationship
     public var game: Game?
     
-    /// The index of the game.
+    /// The index of the end.
     ///
     /// This is typically between 1 and 8.
     public var number: Int = 0
