@@ -31,7 +31,7 @@ struct EndFile {
         var scoringTeam: Game.RelativeTeam?
         
         
-        public init?(from model: End) {
+        public init(from model: End) {
             number = model.number
             played = model.played
             score = model.score

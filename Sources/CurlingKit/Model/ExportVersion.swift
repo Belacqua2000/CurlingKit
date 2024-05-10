@@ -17,7 +17,7 @@ public protocol ExportVersion: Codable {
     
     func modelFromFile(using context: ModelContext) -> Model
     
-    init?(from model: Model)
+    init(from model: Model)
     
     init(fileWrapper: FileWrapper) throws
 }

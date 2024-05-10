@@ -34,7 +34,7 @@ public struct GameFile {
         /// Ends
         var ends = [EndFile.Version1]()
         
-        public init?(from model: Game) {
+        public init(from model: Game) {
             title = model.title
             date = model.date
             notes = model.notes
