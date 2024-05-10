@@ -46,4 +46,8 @@ public final class End {
     public init(number: Int) {
         self.number = number
     }
+    
+    public func switchTeams() {
+        scoringTeam?.toggle()
+    }
 }

@@ -169,6 +169,13 @@ public final class Game {
                 "Opposition"
             }
         }
+        
+        mutating func toggle() {
+            self = switch self {
+            case .own: .opposition
+            case .opposition: .own
+            }
+        }
     }
     
     /// Calculate the number of ends which match the given statistic.
@@ -178,5 +185,17 @@ public final class Game {
         let qualifyingEnds = ends?.filter(endStatistic.qualifiesForStatistic) ?? []
         guard qualifyingEnds.count > 0 else { return nil }
         return Double(qualifyingEnds.filter(endStatistic.statisticMet).count) / Double(qualifyingEnds.count)
+    }
+    
+    
+    public func switchTeams() {
+        withAnimation {
+            teamWithHammer.toggle()
+            let ownStoneColor = ownTeamStoneColor
+            self.ownTeamStoneColor = oppositionTeamStoneColor
+            self.oppositionTeamStoneColor = ownStoneColor
+            
+            ends?.forEach { $0.switchTeams() }
+        }
     }
 }
