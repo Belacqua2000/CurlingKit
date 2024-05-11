@@ -43,6 +43,7 @@ public struct GameFile {
         
         public func modelFromFile(using context: ModelContext) -> Game {
             let newGame = Game(on: date)
+            newGame.title = title
             newGame.notes = notes
             newGame.opponent = opponent
             context.insert(newGame)
