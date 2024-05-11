@@ -7,6 +7,11 @@
 
 import Foundation
 import SwiftData
+import OSLog
+
+public extension Logger {
+    static let importer = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Import File")
+}
 
 public protocol ExportVersion: Codable {
     associatedtype Model: PersistentModel
@@ -24,7 +29,9 @@ public protocol ExportVersion: Codable {
 
 extension ExportVersion {
     public init(url: URL, securityURL: Bool = true) throws {
+        Logger.importer.debug("Loading URL with address \(url.absoluteString) with security scope access \(securityURL)")
         guard !securityURL || url.startAccessingSecurityScopedResource() else {
+            Logger.importer.debug("Failed to load URL")
             throw CocoaError(.fileReadNoPermission)
         }
         defer { url.stopAccessingSecurityScopedResource() }
@@ -34,11 +41,16 @@ extension ExportVersion {
     }
     
     public init(fileWrapper: FileWrapper) throws {
-        guard let data = fileWrapper.regularFileContents else { throw CocoaError(.fileReadCorruptFile) }
+        Logger.importer.debug("Loading file export version from FileWrapper.")
+        guard let data = fileWrapper.regularFileContents else {
+            Logger.importer.debug("Failed to get data from fileWrapper.regularFileContents.")
+            throw CocoaError(.fileReadCorruptFile)
+        }
         self = try JSONDecoder().decode(Self.self, from: data)
     }
     
     public init(data: Data) throws {
+        Logger.importer.debug("Loading file export version from Data.")
         let wrapper = FileWrapper(regularFileWithContents: data)
         self = try Self(fileWrapper: wrapper)
     }
