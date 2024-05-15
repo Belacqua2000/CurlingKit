@@ -178,6 +178,16 @@ public final class Game {
         }
     }
     
+    /// The sum of scores up to this end.
+    ///
+    /// This adds the scores of all previous ends, and includes
+    public func cummulativeScore(after end: End, for team: RelativeTeam) -> Int {
+        (ends ?? [])
+            .filter { $0.number <= end.number && $0.scoringTeam == team }
+            .map { $0.score }
+            .reduce(0, +)
+    }
+    
     /// Calculate the number of ends which match the given statistic.
     /// - Parameter endStatistic: The statistic you are calculating.
     /// - Returns: The proportion of ends which meet the statistic.  This number is between 0–1.
