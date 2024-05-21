@@ -67,20 +67,24 @@ public final class Game {
         }
     }
     
-    public var ownScore: Int {
-        ends?
-            .filter { $0.scoringTeam == .own }
-            .map { $0.score }
-            .reduce(0, +)
-        ?? 0
-    }
+    public var ownScore: Int = 0
     
-    public var oppositionScore: Int {
-        ends?
-            .filter { $0.scoringTeam == .opposition }
-            .map { $0.score }
-            .reduce(0, +)
-        ?? 0
+    public var oppositionScore: Int = 0
+    
+    public func calculateScoresFromEnds() {
+        withAnimation {
+            oppositionScore = ends?
+                .filter { $0.scoringTeam == .opposition }
+                .map { $0.score }
+                .reduce(0, +)
+            ?? 0
+            
+            ownScore = ends?
+                .filter { $0.scoringTeam == .own }
+                .map { $0.score }
+                .reduce(0, +)
+            ?? 0
+        }
     }
     
     /// The outcome of the game.
