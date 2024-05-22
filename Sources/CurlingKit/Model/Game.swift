@@ -155,6 +155,7 @@ public final class Game {
 //                    try? context.save()
                 }
             }
+            calculateScoresFromEnds()
         }
     }
     
