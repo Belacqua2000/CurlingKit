@@ -122,6 +122,25 @@ public final class Game {
         return [weekDay, timeOfDay, "Game"].joined(separator: " ")
     }
     
+    private static let formatStyle = {
+        let df = DateFormatter()
+        df.doesRelativeDateFormatting = true
+        df.timeStyle = .short
+        df.dateStyle = .medium
+        df.formattingContext = .beginningOfSentence
+        return df
+    }()
+    
+    public var formattedDate: String {
+        if Calendar.current.isDateInToday(date) || Calendar.current.isDateInYesterday(date) {
+            return Self.formatStyle.string(from: date)
+        } else if let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: .now), sevenDaysAgo < date {
+            return date.formatted(.dateTime.weekday(.wide).hour().minute())
+        } else {
+            return date.formatted(.dateTime.weekday(.abbreviated).day().hour().minute())
+        }
+    }
+    
     public func dateChanged(oldDate: Date, newDate: Date) {
         if title == Self.defaultTitle(for: oldDate) {
             withAnimation {
