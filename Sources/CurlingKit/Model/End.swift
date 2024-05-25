@@ -54,11 +54,18 @@ public final class End {
         }
     }
     
-    /// Whether the scoring team is not the team with the hammer.
+    /// A steal occurs when the end is scored by the team without the hammer.
     ///
     /// See ``scoringTeam`` and ``teamWithHammer``.
     public var steal: Bool {
         scoringTeam != teamWithHammer
+    }
+    
+    /// A force occurs when the team with the hammer scores a 1.
+    ///
+    /// See ``scoringTeam``, ``teamWithHammer``, and ``score``.
+    public var forced: Bool {
+        scoringTeam == teamWithHammer && score == 1
     }
     
     public init(number: Int) {
