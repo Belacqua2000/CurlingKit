@@ -22,7 +22,7 @@ public final class Competition {
     public var configuration: GameConfiguration?
     
     public init(title: String, configuration: GameConfiguration? = nil) {
-        self.title = title.isEmpty ? "Untitled Competition" : title
+        self.title = title.isEmpty ? String(localized: "Untitled Competition", bundle: .module, comment: "Default competition title.") : title
         self.configuration = configuration
     }
 }

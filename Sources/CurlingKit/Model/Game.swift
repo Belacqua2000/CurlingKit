@@ -7,7 +7,7 @@ public final class Game {
     // MARK: - Details
     
     /// A user-configurable title given to the game.
-    public var title: String = "Untitled Game"
+    public var title: String = String(localized: "Untitled Game", bundle: .module, comment: "Default game title")
     
     /// Additional notes written about the game.
     public var notes = String()
@@ -58,11 +58,11 @@ public final class Game {
         public var title: String {
             switch self {
             case .lose:
-                "Lose"
+                String(localized: "Lose", bundle: .module)
             case .win:
-                "Win"
+                String(localized: "Win", bundle: .module)
             case .peel:
-                "Peel"
+                String(localized: "Draw", bundle: .module)
             }
         }
     }
@@ -122,10 +122,10 @@ public final class Game {
         let hour = Calendar.current.component(.hour, from: date)
         
         let timeOfDay = switch hour {
-        case 0...11: "Morning"
-        case 12...17: "Afternoon"
-        case 18...23: "Evening"
-        default: "Morning"
+        case 0...11: String(localized: "Morning", bundle: .module)
+        case 12...17: String(localized: "Afternoon", bundle: .module)
+        case 18...23: String(localized: "Evening", bundle: .module)
+        default: String(localized: "Morning", bundle: .module)
         }
         
         return [weekDay, timeOfDay, "Game"].joined(separator: " ")
@@ -184,30 +184,6 @@ public final class Game {
                 }
             }
             calculateScoresFromEnds()
-        }
-    }
-    
-    public enum RelativeTeam: Codable {
-        /// The user's own team.
-        case own
-        
-        /// The team which the user is playing.
-        case opposition
-        
-        public var title: String {
-            switch self {
-            case .own:
-                "Own Team"
-            case .opposition:
-                "Opposition"
-            }
-        }
-        
-        mutating func toggle() {
-            self = switch self {
-            case .own: .opposition
-            case .opposition: .own
-            }
         }
     }
     

@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "CurlingKit",
+    defaultLocalization: "en",
     platforms: [.iOS(.v17), .macOS(.v14), .watchOS(.v10), .visionOS(.v1), .tvOS(.v17)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.

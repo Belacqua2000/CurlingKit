@@ -14,13 +14,13 @@ public enum Position: Int, Codable, CaseIterable, Identifiable {
     public var title: String {
         switch self {
         case .lead:
-            "Lead"
+            String(localized: "Lead", bundle: .module, comment: "The team position.")
         case .second:
-            "Second"
+            String(localized: "Second", bundle: .module, comment: "The team position.")
         case .third:
-            "Third"
+            String(localized: "Third", bundle: .module, comment: "The team position.")
         case .skip:
-            "Skip"
+            String(localized: "Skip", bundle: .module, comment: "The team position.")
         }
     }
     

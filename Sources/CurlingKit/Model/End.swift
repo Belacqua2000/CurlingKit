@@ -30,14 +30,14 @@ public final class End {
     ///
     /// The score from the team can be determined using ``score``.
     /// This value is `nil` if the end is blanked.
-    public var scoringTeam: Game.RelativeTeam?
+    public var scoringTeam: RelativeTeam?
     
     
     // MARK: - Computed Properties
     /// Which team has the last stone.
     ///
     /// This is automatically determined by the scoring team of the preceding end.  If no preceding end exists (i.e., this is the first end), this is determined by the team which was mannually allocated with hammer for the beginning of the game.  See ``/CurlingKit/Game/teamWithHammer``.
-    public var teamWithHammer: Game.RelativeTeam {
+    public var teamWithHammer: RelativeTeam {
         guard let game else { return .own }
         if let previousEnd = game.ends?.sorted(using: SortDescriptor(\.number)).last(where: { $0.number < number }) {
             

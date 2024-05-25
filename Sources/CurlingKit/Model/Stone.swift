@@ -10,11 +10,11 @@ public final class Stone {
         public var name: String {
             switch self {
             case .draw:
-                "Draw"
+                String(localized: "Draw", bundle: .module, comment: "The stone shot.")
             case .strike:
-                "Strike"
+                String(localized: "Strike", bundle: .module, comment: "The stone shot.")
             case .defence:
-                "Guard"
+                String(localized: "Guard", bundle: .module, comment: "The stone shot.")
             }
         }
         
@@ -38,9 +38,9 @@ public final class Stone {
         public var name: String {
             switch self {
             case .clockwise:
-                "Clockwise"
+                String(localized: "Clockwise", bundle: .module)
             case .anticlockwise:
-                "Anticlockwise"
+                String(localized: "Counterclockwise", bundle: .module)
             }
         }
         
@@ -65,11 +65,11 @@ public final class Stone {
         public var name: String {
             switch self {
             case .left:
-                "Left"
+                String(localized: "Left", bundle: .module)
             case .center:
-                "Center"
+                String(localized: "Center", bundle: .module)
             case .right:
-                "Right"
+                String(localized: "Right", bundle: .module)
             }
         }
     }
@@ -82,11 +82,11 @@ public final class Stone {
         public var name: String {
             switch self {
             case .tight:
-                "Tight"
+                String(localized: "Tight", bundle: .module, comment: "The ice accuracy.")
             case .onTheBrush:
-                "On the Brush"
+                String(localized: "On the Brush", bundle: .module, comment: "The ice accuracy.")
             case .wide:
-                "Wide"
+                String(localized: "Wide", bundle: .module, comment: "The ice accuracy.")
             }
         }
     }
@@ -99,11 +99,11 @@ public final class Stone {
         public var name: String {
             switch self {
             case .light:
-                "Light"
+                String(localized: "Light", bundle: .module, comment: "The weight accuracy.")
             case .onTarget:
-                "Just Right"
+                String(localized: "Just Right", bundle: .module, comment: "The weight accuracy.")
             case .heavy:
-                "Heavy"
+                String(localized: "Heavy", bundle: .module, comment: "The weight accuracy.")
             }
         }
     }

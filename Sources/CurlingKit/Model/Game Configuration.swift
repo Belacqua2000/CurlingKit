@@ -44,15 +44,15 @@ public struct GameConfiguration: Equatable, Codable, CaseIterable {
         public var title: String {
             switch self {
             case .none:
-                "None"
+                String(localized: "None", bundle: .module, comment: "Tiebreaker title")
             case .extraEnd:
-                "Extra End"
+                String(localized: "Extra End", bundle: .module, comment: "Tiebreaker title")
             case .drawShotChallenge:
-                "Draw Shot Challenge"
+                String(localized: "Draw Shot Challenge", bundle: .module, comment: "Tiebreaker title")
             case .numberOfEnds:
-                "Most Ends Won"
+                String(localized: "Most Ends Won", bundle: .module, comment: "Tiebreaker title")
             case .other:
-                "Other"
+                String(localized: "Other", bundle: .module, comment: "Tiebreaker title")
             }
         }
     }

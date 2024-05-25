@@ -15,15 +15,15 @@ public enum StoneColor: Int, Codable, Hashable, CaseIterable, Identifiable {
     public var title: String {
         switch self {
         case .yellow:
-            "Yellow"
+            String(localized: "Yellow", bundle: .module)
         case .red:
-            "Red"
+            String(localized: "Red", bundle: .module)
         case .blue:
-            "Blue"
+            String(localized: "Blue", bundle: .module)
         case .white:
-            "White"
+            String(localized: "White", bundle: .module)
         case .green:
-            "Green"
+            String(localized: "Green", bundle: .module)
         }
     }
     

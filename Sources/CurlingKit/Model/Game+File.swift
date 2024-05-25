@@ -11,7 +11,7 @@ import SwiftData
 public struct GameFile {
     
     public struct Version1: ExportVersion {
-        public static var fileExtension: String = "curlinggame"
+        public static let fileExtension: String = "curlinggame"
         
         public var fileName: String {
             title
