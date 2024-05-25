@@ -34,8 +34,6 @@ public final class End {
     
     
     // MARK: - Computed Properties
-    public var blanked: Bool { score == 0 }
-    
     /// Which team has the last stone.
     ///
     /// This is automatically determined by the scoring team of the preceding end.  If no preceding end exists (i.e., this is the first end), this is determined by the team which was mannually allocated with hammer for the beginning of the game.  See ``/CurlingKit/Game/teamWithHammer``.
@@ -54,11 +52,16 @@ public final class End {
         }
     }
     
+    /// A blanked end is one in which no-one scores.
+    ///
+    /// See ``score``.
+    public var blanked: Bool { score == 0 }
+    
     /// A steal occurs when the end is scored by the team without the hammer.
     ///
     /// See ``scoringTeam`` and ``teamWithHammer``.
     public var steal: Bool {
-        scoringTeam != teamWithHammer
+        scoringTeam != teamWithHammer && !blanked
     }
     
     /// A force occurs when the team with the hammer scores a 1.
