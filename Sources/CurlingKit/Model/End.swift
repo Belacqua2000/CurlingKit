@@ -43,6 +43,13 @@ public final class End {
         }
     }
     
+    /// Whether the scoring team is not the team with the hammer.
+    ///
+    /// See ``scoringTeam`` and ``teamWithHammer``.
+    public var steal: Bool {
+        scoringTeam != teamWithHammer
+    }
+    
     public init(number: Int) {
         self.number = number
     }
