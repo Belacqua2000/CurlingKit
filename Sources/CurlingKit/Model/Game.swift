@@ -67,10 +67,19 @@ public final class Game {
         }
     }
     
+    /// The final score of the game of the user's team.
+    ///
+    /// This can be entered manually if there are no ends, or can be calculated automatically using ``calculateScoresFromEnds()``
     public var ownScore: Int = 0
     
+    /// The final score of the game of the opposition team.
+    ///
+    /// This can be entered manually if there are no ends, or can be calculated automatically using ``calculateScoresFromEnds()``
     public var oppositionScore: Int = 0
     
+    /// Calculates the total score from ends.
+    ///
+    /// This sums the scores entered for all of the game's ends and updates ``ownScore`` and ``oppositionScore`` accordingly.
     public func calculateScoresFromEnds() {
         withAnimation {
             oppositionScore = ends?
@@ -137,7 +146,7 @@ public final class Game {
         } else if let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: .now), sevenDaysAgo < date {
             return date.formatted(.dateTime.weekday(.wide).hour().minute())
         } else {
-            return date.formatted(.dateTime.weekday(.abbreviated).day().hour().minute())
+            return date.formatted(.dateTime.weekday(.abbreviated).day().month().year().hour().minute())
         }
     }
     
