@@ -97,7 +97,7 @@ public final class Game {
     }
     
     /// The outcome of the game.
-    public var outcome: Outcome? {
+    public var outcome: Outcome {
         if ownScore == oppositionScore {
             return .peel
         } else if ownScore < oppositionScore {
