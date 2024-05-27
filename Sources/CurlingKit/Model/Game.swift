@@ -53,8 +53,13 @@ public final class Game {
     // MARK: - Outcomes
     
     /// The outcome of a game.
-    public enum Outcome: Codable, Comparable {
-        case lose, peel, win
+    @objc
+    public enum Outcome: Int, Codable, Comparable {
+        public static func < (lhs: Game.Outcome, rhs: Game.Outcome) -> Bool {
+            lhs.rawValue < rhs.rawValue
+        }
+        
+        case lose = 0, peel, win
         public var title: String {
             switch self {
             case .lose:
@@ -65,6 +70,8 @@ public final class Game {
                 String(localized: "Draw", bundle: .module)
             }
         }
+        
+        
     }
     
     /// The final score of the game of the user's team.
@@ -97,6 +104,7 @@ public final class Game {
     }
     
     /// The outcome of the game.
+    @objc
     public var outcome: Outcome {
         if ownScore == oppositionScore {
             return .peel
