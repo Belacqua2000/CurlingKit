@@ -69,7 +69,7 @@ public final class Game {
         }
     }
     
-    public enum ScoreCalculationMode {
+    public enum ScoreCalculationMode: Int, Codable {
         case ends, final
     }
     
