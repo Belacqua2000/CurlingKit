@@ -41,6 +41,8 @@ public final class Game {
     /// The color of stones the opposition team are delivering..
     public var oppositionTeamStoneColor: StoneColor = StoneColor.yellow
     
+    public var position = Position.lead
+    
     /// The ends of this game.
     @Relationship(deleteRule: .cascade, inverse: \End.game)
     public var ends: [End]? = []
@@ -65,9 +67,13 @@ public final class Game {
                 String(localized: "Draw", bundle: .module)
             }
         }
-        
-        
     }
+    
+    public enum ScoreCalculationMode {
+        case ends, final
+    }
+    
+    public var scoreCalculation = ScoreCalculationMode.ends
     
     /// The final score of the game of the user's team.
     ///
@@ -82,7 +88,8 @@ public final class Game {
     /// Calculates the total score from ends.
     ///
     /// This sums the scores entered for all of the game's ends and updates ``ownScore`` and ``oppositionScore`` accordingly.
-    public func calculateScoresFromEnds() {
+    public func updateScoresFromEnds() {
+        guard scoreCalculation == .ends else { return }
         withAnimation {
             oppositionScore = ends?
                 .filter { $0.scoringTeam == .opposition }
@@ -185,7 +192,7 @@ public final class Game {
 //                    try? context.save()
                 }
             }
-            calculateScoresFromEnds()
+            updateScoresFromEnds()
         }
     }
     
