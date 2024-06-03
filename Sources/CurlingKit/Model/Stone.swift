@@ -131,7 +131,7 @@ public final class Stone {
         + 1
     }
     
-    public init(end: End, number: Int, shot: Shot? = nil, direction: Direction? = nil, handle: Handle? = nil, iceAccuracy: IceAccuracy? = nil, weightAccuracy: WeightAccuracy? = nil) {
+    public init(end: End, number: Int, shot: Shot? = nil, direction: Direction? = nil, handle: Handle? = nil, iceAccuracy: IceAccuracy? = nil, weightAccuracy: WeightAccuracy? = nil, notes: String? = nil) {
         self.end = end
         self.number = number
         self.shot = shot
@@ -139,5 +139,6 @@ public final class Stone {
         self.handle = handle
         self.iceAccuracy = iceAccuracy
         self.weightAccuracy = weightAccuracy
+        self.notes = notes
     }
 }
