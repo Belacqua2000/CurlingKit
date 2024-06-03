@@ -127,15 +127,7 @@ public final class Stone {
     
     /// The number of the stone in the game.
     public var overallNumber: Int {
-        (end?.game?.allStones
-            .sorted { stone1, stone2 in
-                if stone1.end == stone2.end {
-                    stone1.number < stone2.number
-                } else {
-                    stone1.end?.number ?? 1 < stone2.end?.number ?? 1
-                }
-            }
-            .firstIndex(of: self) ?? 0)
+        (end?.game?.allStones.firstIndex(of: self) ?? 0)
         + 1
     }
     

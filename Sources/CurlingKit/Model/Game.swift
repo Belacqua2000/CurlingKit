@@ -160,7 +160,15 @@ public final class Game {
     }
     
     public var allStones: [Stone] {
-        (ends ?? []).flatMap { $0.stones ?? [] }
+        (ends ?? [])
+            .flatMap { $0.stones ?? [] }
+            .sorted { stone1, stone2 in
+                if stone1.end == stone2.end {
+                    stone1.number < stone2.number
+                } else {
+                    stone1.end?.number ?? 1 < stone2.end?.number ?? 1
+                }
+            }
     }
     
     // MARK: - Functions
