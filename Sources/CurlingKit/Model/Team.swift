@@ -4,7 +4,8 @@ import SwiftData
 public final class Team {
     public var name: String
     
-    public var players: [Player]
+    @Relationship
+    public var players: [Player]?
     
     public init(name: String, players: [Player] = []) {
         self.name = name
@@ -20,7 +21,8 @@ public final class Player {
     public var name: String
     
     /// The teams which the player is part of.
-    public var teams: [Team]
+    @Relationship(inverse: \Team.players)
+    public var teams: [Team]?
     
     /// Whether a player is left- or right-handed
     public var handedness: Handedness?

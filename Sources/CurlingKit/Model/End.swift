@@ -14,8 +14,9 @@ public final class End {
     /// This is typically between 1 and 8.
     public var number: Int = 1
     
-    /// The stones which were played during the game.
-    public var stones: [Stone] = []
+    /// The stones which were played during the end.
+    @Relationship(deleteRule: .cascade, inverse: \Stone.end)
+    public var stones: [Stone]? = []
     
     /// Whether this end has been played.
     public var played: Bool = true

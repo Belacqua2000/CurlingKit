@@ -109,7 +109,8 @@ public final class Stone {
     }
     
     /// The end which this stone was throwed in.
-    public var end: End
+    @Relationship
+    public var end: End?
     
     public var number: Int
     
