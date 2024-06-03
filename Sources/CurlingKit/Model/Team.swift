@@ -13,7 +13,6 @@ public final class Team {
     }
 }
 
-
 @Model
 public final class Player {
     
@@ -33,6 +32,6 @@ public final class Player {
     }
 }
 
-public enum Handedness: Codable {
+public enum Handedness: Int, Codable {
     case rightHanded, leftHanded
 }
