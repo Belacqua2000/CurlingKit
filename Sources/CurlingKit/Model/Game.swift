@@ -159,6 +159,11 @@ public final class Game {
         }
     }
     
+    public var allStones: [Stone] {
+        (ends ?? []).flatMap { $0.stones ?? [] }
+    }
+    
+    // MARK: - Functions
     public func dateChanged(oldDate: Date, newDate: Date) {
         if title == Self.defaultTitle(for: oldDate) {
             withAnimation {
