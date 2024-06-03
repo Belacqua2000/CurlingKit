@@ -93,7 +93,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Peel"
+            "value" : "Draw"
           }
         }
       }
@@ -111,6 +111,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Draw Shot Challenge"
+          }
+        }
+      }
+    },
+    "Draw_Shot" : {
+      "comment" : "Game outcome title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Draw"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draw"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peel"
           }
         }
       }
@@ -266,6 +290,7 @@
       }
     },
     "Lose" : {
+      "comment" : "Game outcome title",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -582,6 +607,7 @@
       }
     },
     "Win" : {
+      "comment" : "Game outcome title",
       "localizations" : {
         "en" : {
           "stringUnit" : {

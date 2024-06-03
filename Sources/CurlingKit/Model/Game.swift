@@ -60,11 +60,11 @@ public final class Game {
         public var title: String {
             switch self {
             case .lose:
-                String(localized: "Lose", bundle: .module)
+                String(localized: "Lose", bundle: .module, comment: "Game outcome title")
             case .win:
-                String(localized: "Win", bundle: .module)
+                String(localized: "Win", bundle: .module, comment: "Game outcome title")
             case .peel:
-                String(localized: "Draw", bundle: .module)
+                String(localized: "Draw_Shot", defaultValue: "Draw", bundle: .module, comment: "Game outcome title")
             }
         }
     }
