@@ -224,6 +224,13 @@ public final class Game {
             self.oppositionTeamStoneColor = ownStoneColor
             
             ends?.forEach { $0.switchTeams() }
+            if scoreCalculation == .ends {
+                updateScoresFromEnds()
+            } else {
+                let ownScore = ownScore
+                self.ownScore = oppositionScore
+                self.oppositionScore = ownScore
+            }
         }
     }
 }
