@@ -143,7 +143,7 @@ public final class Game {
     private static let formatStyle = {
         let df = DateFormatter()
         df.doesRelativeDateFormatting = true
-        df.timeStyle = .none
+        df.timeStyle = .short
         df.dateStyle = .medium
         df.formattingContext = .beginningOfSentence
         return df
@@ -153,9 +153,9 @@ public final class Game {
         if Calendar.current.isDateInToday(date) || Calendar.current.isDateInYesterday(date) {
             return Self.formatStyle.string(from: date)
         } else if let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: .now), sevenDaysAgo < date {
-            return date.formatted(.dateTime.weekday(.wide))
+            return date.formatted(.dateTime.weekday(.wide).hour().minute())
         } else {
-            return date.formatted(.dateTime.weekday(.abbreviated).day().month().year())
+            return date.formatted(.dateTime.weekday(.abbreviated).day().month().year().hour().minute())
         }
     }
     
