@@ -31,24 +31,39 @@ public final class Stone {
     }
     
     public enum Handle: Int, Codable, CaseIterable, Identifiable {
-        case clockwise, anticlockwise
+        case inturn, outturn
         
         public var id: Int { rawValue }
         
         public var name: String {
             switch self {
-            case .clockwise:
+            case .inturn:
+                String(localized: "In-turn", bundle: .module)
+            case .outturn:
+                String(localized: "Out-turn", bundle: .module)
+            }
+        }
+        
+        /// The direction which the stone will rotate when looking at it from above.
+        ///
+        /// This depends on the handedness of the player delivering.
+        public func rotation(handedness: Handedness) -> String {
+            switch (self, handedness) {
+            case (.inturn, .rightHanded), (.outturn, .leftHanded):
                 String(localized: "Clockwise", bundle: .module)
-            case .anticlockwise:
+            case (.outturn, .rightHanded), (.inturn, .leftHanded):
                 String(localized: "Counterclockwise", bundle: .module)
             }
         }
         
-        public var icon: String {
-            switch self {
-            case .clockwise:
+        /// The icon corresponding to the direction which the stone will rotate when looking at it from above.
+        ///
+        /// This depends on the handedness of the player delivering.
+        public func icon(handedness: Handedness) -> String {
+            switch (self, handedness) {
+            case (.inturn, .rightHanded), (.outturn, .leftHanded):
                 "arrow.clockwise"
-            case .anticlockwise:
+            case (.outturn, .rightHanded), (.inturn, .leftHanded):
                 "arrow.counterclockwise"
             }
         }

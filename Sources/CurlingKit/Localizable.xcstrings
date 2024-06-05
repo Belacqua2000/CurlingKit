@@ -222,6 +222,22 @@
         }
       }
     },
+    "In-turn" : {
+      "localizations" : {
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In-turn"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In-turn"
+          }
+        }
+      }
+    },
     "Just Right" : {
       "comment" : "The weight accuracy.",
       "localizations" : {
@@ -402,6 +418,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Other"
+          }
+        }
+      }
+    },
+    "Out-turn" : {
+      "localizations" : {
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Out-turn"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Out-turn"
           }
         }
       }
