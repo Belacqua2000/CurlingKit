@@ -30,7 +30,7 @@ public final class Game {
     public var iceRating: IceRating?
     
     /// The configuration of the game.
-    public var configuration: GameConfiguration = GameConfiguration.standard8Ends
+//    public var configuration: GameConfiguration = GameConfiguration.standard8Ends
     
     /// Whether you start with the hammer.
     public var teamWithHammer: RelativeTeam = RelativeTeam.own
@@ -191,18 +191,16 @@ public final class Game {
         context.insert(end)
     }
     
-    public func adjustEndsFromConfiguration(using context: ModelContext) {
+    public func adjustEndCount(to requestedEndCount: Int, using context: ModelContext) {
         withAnimation {
-            while ends?.count ?? 0 < configuration.numberOfEnds {
+            while endCount < requestedEndCount {
                 addEnd(using: context)
-//                try? context.save()
             }
             
-            while ends?.count ?? 0 > configuration.numberOfEnds {
+            while endCount > requestedEndCount {
                 if let lastEnd = ends?.sorted(using: SortDescriptor(\.number)).last {
                     ends?.removeAll { $0.id == lastEnd.id }
                     context.delete(lastEnd)
-//                    try? context.save()
                 }
             }
             updateScoresFromEnds()
