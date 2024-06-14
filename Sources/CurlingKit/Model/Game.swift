@@ -76,7 +76,7 @@ public final class Game {
         case ends, final
     }
     
-    private(set) var scoreCalculation = ScoreCalculationMode.ends
+    public private(set) var scoreCalculation = ScoreCalculationMode.ends
     
     /// The final score of the game of the user's team.
     ///
