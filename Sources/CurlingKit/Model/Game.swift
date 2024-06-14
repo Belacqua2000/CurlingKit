@@ -114,6 +114,10 @@ public final class Game {
                 .map { $0.score }
                 .reduce(0, +)
             ?? 0
+            
+            if ownScore != oppositionScore {
+                tiebreakerWinner = nil
+            }
         }
     }
     
