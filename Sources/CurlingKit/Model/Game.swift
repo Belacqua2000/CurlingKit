@@ -76,7 +76,7 @@ public final class Game {
         case ends, final
     }
     
-    public var scoreCalculation = ScoreCalculationMode.ends
+    private(set) var scoreCalculation = ScoreCalculationMode.ends
     
     /// The final score of the game of the user's team.
     ///
@@ -87,6 +87,15 @@ public final class Game {
     ///
     /// This can be entered manually if there are no ends, or can be calculated automatically using ``calculateScoresFromEnds()``
     public var oppositionScore: Int = 0
+    
+    public func setScoreCalculation(to calculationMode: ScoreCalculationMode, numberOfEnds: Int = 8, using modelContext: ModelContext) {
+        scoreCalculation = calculationMode
+        
+        if calculationMode == .ends {
+            adjustEndCount(to: numberOfEnds, using: modelContext)
+            updateScoresFromEnds()
+        }
+    }
     
     /// Calculates the total score from ends.
     ///
