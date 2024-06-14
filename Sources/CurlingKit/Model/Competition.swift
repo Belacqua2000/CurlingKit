@@ -19,10 +19,10 @@ public final class Competition {
     public var games: Array<Game>? = []
     
     /// The rules associated with this competition.
-    public var configuration: GameConfiguration?
+//    public var configuration: GameConfiguration?
     
-    public init(title: String, configuration: GameConfiguration? = nil) {
+    public init(title: String) {
         self.title = title.isEmpty ? String(localized: "Untitled Competition", bundle: .module, comment: "Default competition title.") : title
-        self.configuration = configuration
+//        self.configuration = configuration
     }
 }

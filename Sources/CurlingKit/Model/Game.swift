@@ -32,6 +32,9 @@ public final class Game {
     /// The configuration of the game.
 //    public var configuration: GameConfiguration = GameConfiguration.standard8Ends
     
+    /// The winner of the tiebreaker.
+    public var tiebreakerWinner: RelativeTeam?
+    
     /// Whether you start with the hammer.
     public var teamWithHammer: RelativeTeam = RelativeTeam.own
     
@@ -108,7 +111,14 @@ public final class Game {
     /// The outcome of the game.
     public var outcome: Outcome {
         if ownScore == oppositionScore {
-            return .peel
+            switch tiebreakerWinner {
+            case .own:
+                return .win
+            case .opposition:
+                return .lose
+            case nil:
+                return .peel
+            }
         } else if ownScore < oppositionScore {
             return .lose
         } else {
