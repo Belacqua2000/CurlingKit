@@ -124,18 +124,6 @@
             "state" : "new",
             "value" : "Draw"
           }
-        }
-      }
-    },
-    "Draw_Shot" : {
-      "comment" : "Game outcome title",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Draw"
-          }
         },
         "en-CA" : {
           "stringUnit" : {
