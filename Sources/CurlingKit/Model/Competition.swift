@@ -6,10 +6,12 @@
 //
 
 import SwiftData
-
+import Foundation
 
 @Model
 public final class Competition {
+    @Attribute(.allowsCloudEncryption, .unique)
+    public var stableIdentifier: UUID = UUID()
     
     /// The name of the competition.
     @Attribute(.allowsCloudEncryption)

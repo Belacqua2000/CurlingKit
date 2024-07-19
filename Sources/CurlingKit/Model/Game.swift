@@ -6,8 +6,8 @@ import SwiftUI
 public final class Game {
     // MARK: - Details
     
-    @Attribute(.allowsCloudEncryption)
-    public var id: UUID = UUID()
+    @Attribute(.allowsCloudEncryption, .unique)
+    public var stableIdentifier: UUID = UUID()
     
     /// A user-configurable title given to the game.
     @Attribute(.allowsCloudEncryption)
