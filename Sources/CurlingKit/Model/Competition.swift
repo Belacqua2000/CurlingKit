@@ -10,7 +10,7 @@ import Foundation
 
 @Model
 public final class Competition {
-    @Attribute(.allowsCloudEncryption, .unique)
+    @Attribute(.allowsCloudEncryption, .preserveValueOnDeletion)
     public var stableIdentifier: UUID = UUID()
     
     /// The name of the competition.
