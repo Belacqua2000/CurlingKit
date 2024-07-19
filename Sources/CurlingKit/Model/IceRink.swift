@@ -1,4 +1,4 @@
-import CoreLocation
+/*import CoreLocation
 import SwiftData
 import SwiftUI
 
@@ -37,3 +37,4 @@ public struct IceRating: Codable {
     var speed: Speed
     var swing: Swing
 }
+*/

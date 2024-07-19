@@ -12,25 +12,25 @@ public final class End {
     /// The index of the end.
     ///
     /// This is typically between 1 and 8.
+    @Attribute(.allowsCloudEncryption)
     public var number: Int = 1
     
-    /// The stones which were played during the end.
+    /* /// The stones which were played during the end.
     @Relationship(deleteRule: .cascade, inverse: \Stone.end)
-    public var stones: [Stone]? = []
-    
-    /// Whether this end has been played.
-    public var played: Bool = true
+    public var stones: [Stone]? = []*/
     
     /// The score of the current end.
     ///
     /// The scoring team is stored in ``scoringTeam``.
     /// This value is 0 if the end has been blanked.
+    @Attribute(.allowsCloudEncryption)
     public var score: Int = 0
     
     /// The team which scored.
     ///
     /// The score from the team can be determined using ``score``.
     /// This value is `nil` if the end is blanked.
+    @Attribute(.allowsCloudEncryption)
     public var scoringTeam: RelativeTeam?
     
     

@@ -34,6 +34,8 @@ public struct GameFile {
         /// Ends
         var ends = [EndFile.Version1]()
         
+        public private(set) var scoreCalculation = Game.ScoreCalculationMode.ends
+        
         public init(from model: Game) {
             title = model.title
             date = model.date
@@ -47,6 +49,7 @@ public struct GameFile {
             newGame.notes = notes
             newGame.opponent = opponent
             context.insert(newGame)
+            newGame.setScoreCalculation(to: scoreCalculation, using: context)
             newGame.ends = ends.map { $0.modelFromFile(using: context) }
             return newGame
         }

@@ -115,9 +115,21 @@
         }
       }
     },
-    "Draw_Shot" : {
+    "Draw_Outcome" : {
       "comment" : "Game outcome title",
       "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Draw"
+          }
+        }
+      }
+    },
+    "Draw_Shot" : {
+      "comment" : "Game outcome title",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

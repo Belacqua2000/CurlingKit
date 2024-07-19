@@ -6,44 +6,47 @@ import SwiftUI
 public final class Game {
     // MARK: - Details
     
+    @Attribute(.allowsCloudEncryption)
+    public var id: UUID = UUID()
+    
     /// A user-configurable title given to the game.
+    @Attribute(.allowsCloudEncryption)
     public var title: String = String(localized: "Untitled Game", bundle: .module, comment: "Default game title")
     
     /// Additional notes written about the game.
+    @Attribute(.allowsCloudEncryption)
     public var notes = String()
     
     /// The start date when the game took place.
+    @Attribute(.allowsCloudEncryption)
     public var date: Date
     
-    /// The rink which the game was played in.
-    public var location: IceRink?
-    
     // MARK: - Configuration
-    
     /// The opposition team.
+    @Attribute(.allowsCloudEncryption)
     public var opponent = String()
     
     /// The competition this game is part of.
+    @Attribute(.allowsCloudEncryption)
     public var competition: Competition?
     
-    /// The rating given to the rink during this game.
-    public var iceRating: IceRating?
-    
-    /// The configuration of the game.
-//    public var configuration: GameConfiguration = GameConfiguration.standard8Ends
-    
     /// The winner of the tiebreaker.
+    @Attribute(.allowsCloudEncryption)
     public var tiebreakerWinner: RelativeTeam?
     
     /// Whether you start with the hammer.
+    @Attribute(.allowsCloudEncryption)
     public var teamWithHammer: RelativeTeam = RelativeTeam.own
     
     /// The color of stones the player's own team are delivering..
+    @Attribute(.allowsCloudEncryption)
     public var ownTeamStoneColor: StoneColor = StoneColor.red
     
     /// The color of stones the opposition team are delivering..
+    @Attribute(.allowsCloudEncryption)
     public var oppositionTeamStoneColor: StoneColor = StoneColor.yellow
     
+    @Attribute(.allowsCloudEncryption)
     public var position = Position.lead
     
     /// The ends of this game.
@@ -51,9 +54,6 @@ public final class Game {
     public var ends: [End]? = []
     
     public var endCount: Int { ends?.count ?? 20}
-    
-    /// Additional points added to the team.
-    public var penaltyPoints: Int = 0
     
     // MARK: - Outcomes
     
@@ -67,7 +67,7 @@ public final class Game {
             case .win:
                 String(localized: "Win", bundle: .module, comment: "Game outcome title")
             case .peel:
-                String(localized: "Draw_Shot", defaultValue: "Draw", bundle: .module, comment: "Game outcome title")
+                String(localized: "Draw_Outcome", defaultValue: "Draw", bundle: .module, comment: "Game outcome title")
             }
         }
     }
@@ -76,16 +76,19 @@ public final class Game {
         case ends, final
     }
     
+    @Attribute(.allowsCloudEncryption)
     public private(set) var scoreCalculation = ScoreCalculationMode.ends
     
     /// The final score of the game of the user's team.
     ///
     /// This can be entered manually if there are no ends, or can be calculated automatically using ``calculateScoresFromEnds()``
+    @Attribute(.allowsCloudEncryption)
     public var ownScore: Int = 0
     
     /// The final score of the game of the opposition team.
     ///
     /// This can be entered manually if there are no ends, or can be calculated automatically using ``calculateScoresFromEnds()``
+    @Attribute(.allowsCloudEncryption)
     public var oppositionScore: Int = 0
     
     public func setScoreCalculation(to calculationMode: ScoreCalculationMode, numberOfEnds: Int = 8, using modelContext: ModelContext) {
@@ -182,7 +185,7 @@ public final class Game {
         }
     }
     
-    public var allStones: [Stone] {
+    /*public var allStones: [Stone] {
         (ends ?? [])
             .flatMap { $0.stones ?? [] }
             .sorted { stone1, stone2 in
@@ -192,7 +195,7 @@ public final class Game {
                     stone1.end?.number ?? 1 < stone2.end?.number ?? 1
                 }
             }
-    }
+    }*/
     
     // MARK: - Functions
     public func dateChanged(oldDate: Date, newDate: Date) {

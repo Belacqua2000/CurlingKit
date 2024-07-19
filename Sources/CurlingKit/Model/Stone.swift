@@ -1,4 +1,4 @@
-import SwiftData
+/*import SwiftData
 
 @Model
 public final class Stone {
@@ -157,3 +157,4 @@ public final class Stone {
         self.notes = notes
     }
 }
+*/

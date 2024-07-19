@@ -1,4 +1,4 @@
-import SwiftData
+/*import SwiftData
 
 @Model
 public final class Team {
@@ -35,3 +35,4 @@ public final class Player {
 public enum Handedness: Int, Codable {
     case rightHanded, leftHanded
 }
+*/
