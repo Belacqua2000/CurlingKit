@@ -13,7 +13,7 @@ public final class Competition {
     
     /// The name of the competition.
     @Attribute(.allowsCloudEncryption)
-    public var title: String
+    public var title: String = "Untitled Competition"
     
     /// The games you have played in this competition.
     @Relationship(inverse: \Game.competition)

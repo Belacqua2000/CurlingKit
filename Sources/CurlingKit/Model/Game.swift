@@ -19,7 +19,7 @@ public final class Game {
     
     /// The start date when the game took place.
     @Attribute(.allowsCloudEncryption)
-    public var date: Date
+    public var date: Date = Date.now
     
     // MARK: - Configuration
     /// The opposition team.
