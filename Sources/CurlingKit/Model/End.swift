@@ -56,6 +56,8 @@ public final class End {
     /// A blanked end is one in which no-one scores.
     ///
     /// See ``score``.
+    /// 
+    @available(*, deprecated, message: "Use the End.result property instead.")
     public var blanked: Bool { score == 0 }
     
     /// A steal occurs when the end is scored by the team without the hammer.
@@ -78,5 +80,35 @@ public final class End {
     
     public func switchTeams() {
         scoringTeam?.toggle()
+    }
+    
+    public enum Result: Int, CaseIterable, Comparable, Identifiable {
+        public static func < (lhs: End.Result, rhs: End.Result) -> Bool {
+            lhs.rawValue < rhs.rawValue
+        }
+        
+        case win, blanked, loss
+        
+        public var id: String { title }
+        
+        var title: String {
+            switch self {
+            case .win:
+                String(localized: "Win", comment: "End result")
+            case .blanked:
+                String(localized: "Blank", comment: "End result")
+            case .loss:
+                String(localized: "Loss", comment: "End result")
+            }
+        }
+    }
+    
+    /// The result of the end, from the perspective of the own team.
+    public var result: Result {
+        switch scoringTeam {
+        case .own: .win
+        case .opposition: .loss
+        case nil: .blanked
+        }
     }
 }
