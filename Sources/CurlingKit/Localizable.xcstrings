@@ -17,6 +17,9 @@
         }
       }
     },
+    "Blank" : {
+      "comment" : "End result"
+    },
     "Blue" : {
       "localizations" : {
         "en-CA" : {
@@ -321,6 +324,9 @@
           }
         }
       }
+    },
+    "Loss" : {
+      "comment" : "End result"
     },
     "Morning" : {
       "localizations" : {
@@ -639,7 +645,7 @@
       }
     },
     "Win" : {
-      "comment" : "Game outcome title",
+      "comment" : "End result\nGame outcome title",
       "localizations" : {
         "en" : {
           "stringUnit" : {

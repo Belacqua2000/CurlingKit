@@ -64,7 +64,7 @@ public final class End {
     ///
     /// See ``scoringTeam`` and ``teamWithHammer``.
     public var steal: Bool {
-        scoringTeam != teamWithHammer && !blanked
+        scoringTeam != teamWithHammer && result != .blanked
     }
     
     /// A force occurs when the team with the hammer scores a 1.
@@ -91,7 +91,7 @@ public final class End {
         
         public var id: String { title }
         
-        var title: String {
+        public var title: String {
             switch self {
             case .win:
                 String(localized: "Win", comment: "End result")
