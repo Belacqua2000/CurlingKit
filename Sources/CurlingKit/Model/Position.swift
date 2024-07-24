@@ -8,7 +8,11 @@
 import Foundation
 
 /// The position in a curling team.
-public enum Position: Int, Codable, CaseIterable, Identifiable {
+public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable {
+    public static func < (lhs: Position, rhs: Position) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+    
     case lead = 1, second, third, skip
     
     public var title: String {
