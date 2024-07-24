@@ -58,16 +58,16 @@ public final class Game {
     // MARK: - Outcomes
     
     /// The outcome of a game.
-    public enum Outcome: Codable, Comparable {
+    public enum Outcome: Codable, Comparable, CaseIterable {
         case lose, peel, win
         public var title: String {
             switch self {
             case .lose:
                 String(localized: "Lose", bundle: .module, comment: "Game outcome title")
-            case .win:
-                String(localized: "Win", bundle: .module, comment: "Game outcome title")
             case .peel:
                 String(localized: "Draw_Outcome", defaultValue: "Draw", bundle: .module, comment: "Game outcome title")
+            case .win:
+                String(localized: "Win", bundle: .module, comment: "Game outcome title")
             }
         }
     }
