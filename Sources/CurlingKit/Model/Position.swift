@@ -9,12 +9,17 @@ import Foundation
 
 /// The position in a curling team.
 public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable {
+    
+    /// Sorts two positions by order of typical play.
+    ///
+    /// Lead, second, third, then skip.
     public static func < (lhs: Position, rhs: Position) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
     
     case lead = 1, second, third, skip
     
+    /// The localized title of the position.
     public var title: String {
         switch self {
         case .lead:
