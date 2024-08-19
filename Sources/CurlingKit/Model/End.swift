@@ -1,6 +1,7 @@
 import SwiftData
 import SwiftUI
 import Foundation
+import Charts
 
 /// A subunit of a game.
 @Model
@@ -83,7 +84,7 @@ public final class End {
         scoringTeam?.toggle()
     }
     
-    public enum Result: Int, CaseIterable, Comparable, Identifiable {
+    public enum Result: Int, CaseIterable, Comparable, Identifiable, Plottable {
         public static func < (lhs: End.Result, rhs: End.Result) -> Bool {
             lhs.rawValue < rhs.rawValue
         }
@@ -109,6 +110,15 @@ public final class End {
             case .blanked: .yellow
             case .win: .green
             }
+        }
+        
+        public var primitivePlottable: String {
+            title
+        }
+        
+        public init?(primitivePlottable: String) {
+            guard let value = Self.allCases.first(where: { $0.title == primitivePlottable }) else { return nil }
+            self = value
         }
     }
     
