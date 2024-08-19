@@ -37,6 +37,7 @@
       }
     },
     "Center" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -53,6 +54,7 @@
       }
     },
     "Clockwise" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -69,6 +71,7 @@
       }
     },
     "Counterclockwise" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -103,6 +106,7 @@
     },
     "Draw Shot Challenge" : {
       "comment" : "Tiebreaker title",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -160,6 +164,7 @@
     },
     "Extra End" : {
       "comment" : "Tiebreaker title",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -193,6 +198,7 @@
     },
     "Guard" : {
       "comment" : "The stone shot.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -210,6 +216,7 @@
     },
     "Heavy" : {
       "comment" : "The weight accuracy.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -226,6 +233,7 @@
       }
     },
     "In-turn" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -243,6 +251,7 @@
     },
     "Just Right" : {
       "comment" : "The weight accuracy.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -276,6 +285,7 @@
       }
     },
     "Left" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -293,6 +303,7 @@
     },
     "Light" : {
       "comment" : "The weight accuracy.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -346,6 +357,7 @@
     },
     "Most Ends Won" : {
       "comment" : "Tiebreaker title",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -363,6 +375,7 @@
     },
     "None" : {
       "comment" : "Tiebreaker title",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -380,6 +393,7 @@
     },
     "On the Brush" : {
       "comment" : "The ice accuracy.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -413,6 +427,7 @@
     },
     "Other" : {
       "comment" : "Tiebreaker title",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -429,6 +444,7 @@
       }
     },
     "Out-turn" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -477,6 +493,7 @@
       }
     },
     "Right" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -528,6 +545,7 @@
     },
     "Strike" : {
       "comment" : "The stone shot.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -562,6 +580,7 @@
     },
     "Tight" : {
       "comment" : "The ice accuracy.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -629,6 +648,7 @@
     },
     "Wide" : {
       "comment" : "The ice accuracy.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {

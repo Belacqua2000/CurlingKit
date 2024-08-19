@@ -70,6 +70,14 @@ public final class Game {
                 String(localized: "Win", bundle: .module, comment: "Game outcome title")
             }
         }
+        
+        public var color: Color {
+            switch self {
+            case .lose: .red
+            case .peel: .yellow
+            case .win: .green
+            }
+        }
     }
     
     public enum ScoreCalculationMode: Int, Codable {

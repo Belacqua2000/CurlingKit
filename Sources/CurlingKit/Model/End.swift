@@ -1,4 +1,5 @@
 import SwiftData
+import SwiftUI
 import Foundation
 
 /// A subunit of a game.
@@ -99,6 +100,14 @@ public final class End {
                 String(localized: "Blank", comment: "End result")
             case .loss:
                 String(localized: "Loss", comment: "End result")
+            }
+        }
+        
+        public var color: Color {
+            switch self {
+            case .loss: .red
+            case .blanked: .yellow
+            case .win: .green
             }
         }
     }

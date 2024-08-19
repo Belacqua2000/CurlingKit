@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RelativeTeam: Codable {
+public enum RelativeTeam: Codable, CaseIterable {
     /// The user's own team.
     case own
     
