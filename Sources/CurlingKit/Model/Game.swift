@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import Charts
 
 /// A curling match between two teams.
 @Model
@@ -58,7 +59,7 @@ public final class Game {
     // MARK: - Outcomes
     
     /// The outcome of a game.
-    public enum Outcome: Codable, Comparable, CaseIterable {
+    public enum Outcome: Codable, Comparable, CaseIterable, Plottable {
         case lose, peel, win
         public var title: String {
             switch self {
@@ -77,6 +78,15 @@ public final class Game {
             case .peel: .yellow
             case .win: .green
             }
+        }
+        
+        public var primitivePlottable: String {
+            title
+        }
+        
+        public init?(primitivePlottable: String) {
+            guard let value = Self.allCases.first(where: { $0.title == primitivePlottable }) else { return nil }
+            self = value
         }
     }
     
