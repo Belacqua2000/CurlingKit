@@ -59,7 +59,7 @@ public final class Game {
     // MARK: - Outcomes
     
     /// The outcome of a game.
-    public enum Outcome: Codable, Comparable, CaseIterable, Plottable {
+    public enum Outcome: Codable, Comparable, Plottable, CaseIterable {
         case lose, peel, win
         public var title: String {
             switch self {
