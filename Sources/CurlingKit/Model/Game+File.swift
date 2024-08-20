@@ -34,6 +34,12 @@ public struct GameFile {
         /// Ends
         var ends = [EndFile.Version1]()
         
+        /// The final score of the game of the user's team.
+        public var ownScore: Int
+        
+        /// The final score of the game of the opposition team.
+        public var oppositionScore: Int
+        
         public private(set) var scoreCalculation = Game.ScoreCalculationMode.ends
         
         public init(from model: Game) {
@@ -41,6 +47,9 @@ public struct GameFile {
             date = model.date
             notes = model.notes
             ends = model.ends?.compactMap { EndFile.Version1(from: $0) } ?? []
+            scoreCalculation = model.scoreCalculation
+            ownScore = model.ownScore
+            oppositionScore = model.oppositionScore
         }
         
         public func modelFromFile(using context: ModelContext) -> Game {
@@ -48,9 +57,14 @@ public struct GameFile {
             newGame.title = title
             newGame.notes = notes
             newGame.opponent = opponent
+            newGame.ownScore = ownScore
+            newGame.oppositionScore = oppositionScore
             context.insert(newGame)
             newGame.setScoreCalculation(to: scoreCalculation, using: context)
             newGame.ends = ends.map { $0.modelFromFile(using: context) }
+            if newGame.scoreCalculation == .ends {
+                newGame.updateScoresFromEnds()
+            }
             return newGame
         }
     }
