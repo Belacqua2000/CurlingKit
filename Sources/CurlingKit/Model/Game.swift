@@ -170,6 +170,15 @@ public final class Game {
         title = Self.defaultTitle(for: date)
     }
     
+    func setTitle() {
+        let date = date.formatted(.dateTime.weekday(.wide).month(.abbreviated).year())
+        var newTitle = "\(date) Game"
+        if !opponent.isEmpty {
+            newTitle.append(" vs \(opponent)")
+        }
+        title = newTitle
+    }
+    
     static func defaultTitle(for date: Date) -> String {
         let weekDay = date.formatted(.dateTime.weekday(.wide))
         let hour = Calendar.current.component(.hour, from: date)

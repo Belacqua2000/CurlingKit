@@ -43,6 +43,7 @@ public struct GameFile {
         public private(set) var scoreCalculation = Game.ScoreCalculationMode.ends
         
         public init(from model: Game) {
+            model.setTitle()
             title = model.title
             date = model.date
             notes = model.notes
