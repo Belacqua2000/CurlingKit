@@ -171,7 +171,7 @@ public final class Game {
     }
     
     func setTitle() {
-        let date = date.formatted(.dateTime.weekday(.wide).month(.abbreviated).year())
+        let date = date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated).year())
         var newTitle = "\(date) Game"
         if !opponent.isEmpty {
             newTitle.append(" vs \(opponent)")

@@ -29,10 +29,10 @@ public struct GameFile {
         var date: Date
         
         /// The opposition team.
-        var opponent = String()
+        var opponent: String
         
         /// Ends
-        var ends = [EndFile.Version1]()
+        var ends: [EndFile.Version1]
         
         /// The final score of the game of the user's team.
         public var ownScore: Int
@@ -40,16 +40,21 @@ public struct GameFile {
         /// The final score of the game of the opposition team.
         public var oppositionScore: Int
         
-        public private(set) var scoreCalculation = Game.ScoreCalculationMode.ends
+        /// Whether you start with the hammer.
+        public var teamWithHammer: RelativeTeam
+        
+        public private(set) var scoreCalculation: Game.ScoreCalculationMode
         
         public init(from model: Game) {
             model.setTitle()
             title = model.title
+            opponent = model.opponent
             date = model.date
             notes = model.notes
             ends = model.ends?.compactMap { EndFile.Version1(from: $0) } ?? []
             scoreCalculation = model.scoreCalculation
             ownScore = model.ownScore
+            teamWithHammer = model.teamWithHammer
             oppositionScore = model.oppositionScore
         }
         
@@ -60,6 +65,7 @@ public struct GameFile {
             newGame.opponent = opponent
             newGame.ownScore = ownScore
             newGame.oppositionScore = oppositionScore
+            newGame.teamWithHammer = teamWithHammer
             context.insert(newGame)
             newGame.setScoreCalculation(to: scoreCalculation, using: context)
             newGame.ends = ends.map { $0.modelFromFile(using: context) }
