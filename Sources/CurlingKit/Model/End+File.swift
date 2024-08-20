@@ -22,9 +22,9 @@ struct EndFile {
         /// The index of the end.
         ///
         /// This is typically between 1 and 8.
-        var number: Int = 0
+        var number: Int
         
-        var score: Int = 0
+        var score: Int
         var scoringTeam: RelativeTeam?
         
         

@@ -40,8 +40,19 @@ public struct GameFile {
         /// The final score of the game of the opposition team.
         public var oppositionScore: Int
         
+        /// The winner of the tiebreaker.
+        public var tiebreakerWinner: RelativeTeam?
+        
         /// Whether you start with the hammer.
         public var teamWithHammer: RelativeTeam
+        
+        /// The color of stones the player's own team are delivering.
+        public var ownTeamStoneColor: StoneColor
+        
+        /// The color of stones the opposition team are delivering.
+        public var oppositionTeamStoneColor: StoneColor
+        
+        public var position: Position
         
         public private(set) var scoreCalculation: Game.ScoreCalculationMode
         
@@ -56,6 +67,9 @@ public struct GameFile {
             ownScore = model.ownScore
             teamWithHammer = model.teamWithHammer
             oppositionScore = model.oppositionScore
+            position = model.position
+            ownTeamStoneColor = model.ownTeamStoneColor
+            oppositionTeamStoneColor = model.oppositionTeamStoneColor
         }
         
         public func modelFromFile(using context: ModelContext) -> Game {
@@ -63,9 +77,12 @@ public struct GameFile {
             newGame.title = title
             newGame.notes = notes
             newGame.opponent = opponent
+            newGame.teamWithHammer = teamWithHammer
             newGame.ownScore = ownScore
             newGame.oppositionScore = oppositionScore
-            newGame.teamWithHammer = teamWithHammer
+            newGame.position = position
+            newGame.ownTeamStoneColor = ownTeamStoneColor
+            newGame.oppositionTeamStoneColor = oppositionTeamStoneColor
             context.insert(newGame)
             newGame.setScoreCalculation(to: scoreCalculation, using: context)
             newGame.ends = ends.map { $0.modelFromFile(using: context) }
