@@ -19,7 +19,6 @@ public struct GameFile {
         
         public static var version: Int = 1
         
-        /// A user-configurable title given to the game.
         var title: String
         
         /// Additional notes written about the game.
@@ -57,8 +56,7 @@ public struct GameFile {
         public private(set) var scoreCalculation: Game.ScoreCalculationMode
         
         public init(from model: Game) {
-            model.setTitle()
-            title = model.title
+            title = model.exportTitle
             opponent = model.opponent
             date = model.date
             notes = model.notes
@@ -73,10 +71,9 @@ public struct GameFile {
         }
         
         public func modelFromFile(using context: ModelContext) -> Game {
-            let newGame = Game(on: date)
+            let newGame = Game(on: date, against: opponent)
             newGame.title = title
             newGame.notes = notes
-            newGame.opponent = opponent
             newGame.teamWithHammer = teamWithHammer
             newGame.ownScore = ownScore
             newGame.oppositionScore = oppositionScore

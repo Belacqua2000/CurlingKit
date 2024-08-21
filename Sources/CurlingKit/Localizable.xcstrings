@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Afternoon" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -147,6 +148,7 @@
       }
     },
     "Evening" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -340,6 +342,7 @@
       "comment" : "End result"
     },
     "Morning" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {

@@ -167,31 +167,32 @@ public final class Game {
         self.date = date
         self.opponent = opponent
         
-        title = Self.defaultTitle(for: date)
+//        title = Self.defaultTitle(for: date)
     }
     
-    func setTitle() {
+    var exportTitle: String {
         let date = date.formatted(.dateTime.weekday(.wide).day().month(.abbreviated).year())
         var newTitle = "\(date) Game"
         if !opponent.isEmpty {
             newTitle.append(" vs \(opponent)")
         }
-        title = newTitle
+        return newTitle
+//        title = newTitle
     }
     
-    static func defaultTitle(for date: Date) -> String {
-        let weekDay = date.formatted(.dateTime.weekday(.wide))
-        let hour = Calendar.current.component(.hour, from: date)
-        
-        let timeOfDay = switch hour {
-        case 0...11: String(localized: "Morning", bundle: .module)
-        case 12...17: String(localized: "Afternoon", bundle: .module)
-        case 18...23: String(localized: "Evening", bundle: .module)
-        default: String(localized: "Morning", bundle: .module)
-        }
-        
-        return [weekDay, timeOfDay, "Game"].joined(separator: " ")
-    }
+//    static func defaultTitle(for date: Date) -> String {
+//        let weekDay = date.formatted(.dateTime.weekday(.wide))
+//        let hour = Calendar.current.component(.hour, from: date)
+//        
+//        let timeOfDay = switch hour {
+//        case 0...11: String(localized: "Morning", bundle: .module)
+//        case 12...17: String(localized: "Afternoon", bundle: .module)
+//        case 18...23: String(localized: "Evening", bundle: .module)
+//        default: String(localized: "Morning", bundle: .module)
+//        }
+//        
+//        return [weekDay, timeOfDay, "Game"].joined(separator: " ")
+//    }
     
     private static let formatStyle = {
         let df = DateFormatter()
@@ -225,13 +226,13 @@ public final class Game {
     }*/
     
     // MARK: - Functions
-    public func dateChanged(oldDate: Date, newDate: Date) {
-        if title == Self.defaultTitle(for: oldDate) {
-            withAnimation {
-                title = Self.defaultTitle(for: newDate)
-            }
-        }
-    }
+//    public func dateChanged(oldDate: Date, newDate: Date) {
+//        if title == Self.defaultTitle(for: oldDate) {
+//            withAnimation {
+//                title = Self.defaultTitle(for: newDate)
+//            }
+//        }
+//    }
     
     /// Add another end to this game.
     public func addEnd(using context: ModelContext) {
