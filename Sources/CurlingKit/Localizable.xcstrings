@@ -19,7 +19,21 @@
       }
     },
     "Blank" : {
-      "comment" : "End result"
+      "comment" : "End result",
+      "localizations" : {
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blank"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blank"
+          }
+        }
+      }
     },
     "Blue" : {
       "localizations" : {
@@ -182,6 +196,29 @@
         }
       }
     },
+    "Game_Loss" : {
+      "comment" : "Game outcome title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss"
+          }
+        }
+      }
+    },
     "Green" : {
       "localizations" : {
         "en-CA" : {
@@ -323,6 +360,7 @@
     },
     "Lose" : {
       "comment" : "Game outcome title",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
@@ -339,7 +377,21 @@
       }
     },
     "Loss" : {
-      "comment" : "End result"
+      "comment" : "End result",
+      "localizations" : {
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loss"
+          }
+        }
+      }
     },
     "Morning" : {
       "extractionState" : "stale",
