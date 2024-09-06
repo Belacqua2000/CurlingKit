@@ -8,7 +8,7 @@
 import Foundation
 
 /// The position in a curling team.
-public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable {
+public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable, Sendable {
     
     /// Sorts two positions by order of typical play.
     ///

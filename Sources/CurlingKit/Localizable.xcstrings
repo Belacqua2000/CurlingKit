@@ -104,6 +104,7 @@
     },
     "Draw" : {
       "comment" : "The stone shot.",
+      "extractionState" : "stale",
       "localizations" : {
         "en-CA" : {
           "stringUnit" : {
