@@ -84,7 +84,7 @@ public final class End {
         scoringTeam?.toggle()
     }
     
-    public enum Result: Int, CaseIterable, Comparable, Identifiable, Plottable {
+    public enum Result: Int, CaseIterable, Comparable, Identifiable, Plottable, Sendable {
         public static func < (lhs: End.Result, rhs: End.Result) -> Bool {
             lhs.rawValue < rhs.rawValue
         }
