@@ -11,13 +11,13 @@ import SwiftData
 struct EndFile {
     
     public struct Version1: ExportVersion {
-        public static var fileExtension: String = ""
+        public static let fileExtension: String = ""
         
         var fileName: String {
             number.formatted()
         }
         
-        public static var version: Int = 1
+        public static let version: Int = 1
         
         /// The index of the end.
         ///

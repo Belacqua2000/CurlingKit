@@ -8,9 +8,9 @@
 import Foundation
 
 public struct GameStatistic: Statistic {
-    var qualifiesForStatistic: ((Game) -> Bool)
+    var qualifiesForStatistic: (@Sendable (Game) -> Bool)
     
-    var statisticMet: ((Game) -> Bool)
+    var statisticMet: (@Sendable (Game) -> Bool)
     
     typealias CurlingFeature = Game
     
@@ -20,5 +20,5 @@ public struct GameStatistic: Statistic {
     
     var description: String?
     
-    public static var allCases: [GameStatistic] = []
+    public static let allCases: [GameStatistic] = []
 }

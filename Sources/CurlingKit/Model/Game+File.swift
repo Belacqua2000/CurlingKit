@@ -17,7 +17,7 @@ public struct GameFile {
             title
         }
         
-        public static var version: Int = 1
+        public static let version: Int = 1
         
         var title: String
         

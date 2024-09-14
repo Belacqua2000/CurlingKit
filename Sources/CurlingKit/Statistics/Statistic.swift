@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Statistic: CaseIterable, Identifiable {
+protocol Statistic: CaseIterable, Identifiable, Sendable {
     
     /// The title given to the statistic.
     var title: String { get }
@@ -21,10 +21,10 @@ protocol Statistic: CaseIterable, Identifiable {
     associatedtype CurlingFeature
     
     /// Determines whether an end qualifies for the statistic.
-    var qualifiesForStatistic: ((CurlingFeature) -> Bool) { get }
+    var qualifiesForStatistic: (@Sendable (CurlingFeature) -> Bool) { get }
     
     /// Determines whether an end meets the statistic criteria.
-    var statisticMet: ((CurlingFeature) -> Bool) { get }
+    var statisticMet: (@Sendable (CurlingFeature) -> Bool) { get }
 }
 
 extension Statistic {

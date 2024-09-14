@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RelativeTeam: Codable, CaseIterable, Sendable {
+public enum RelativeTeam: Codable, Sendable {
     /// The user's own team.
     case own
     
@@ -29,4 +29,6 @@ public enum RelativeTeam: Codable, CaseIterable, Sendable {
         case .opposition: .own
         }
     }
+    
+    static let allCases: [RelativeTeam] = [.own, .opposition]
 }

@@ -17,12 +17,12 @@ public struct EndEfficiency: Statistic, Identifiable {
     public var id: String { title }
     
     /// Determines whether an end qualifies for the statistic.
-    var qualifiesForStatistic: ((End) -> Bool)
+    var qualifiesForStatistic: (@Sendable (End) -> Bool)
     
     /// Determines whether an end meets the statistic criteria.
-    var statisticMet: ((End) -> Bool)
+    var statisticMet: (@Sendable (End) -> Bool)
     
-    public static var allCases: [EndEfficiency] = [.hammerEfficiency, .forceEfficiency, .stealEfficiency]
+    public static let allCases: [EndEfficiency] = [.hammerEfficiency, .forceEfficiency, .stealEfficiency]
     
     public static let hammerEfficiency = Self(
         title: "Hammer Efficiency",
