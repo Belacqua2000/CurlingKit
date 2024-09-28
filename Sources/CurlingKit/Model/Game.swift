@@ -206,7 +206,7 @@ public final class Game {
     public var formattedDate: String {
         if Calendar.current.isDateInToday(date) || Calendar.current.isDateInYesterday(date) {
             return Self.formatStyle.string(from: date)
-        } else if let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: .now), sevenDaysAgo < date {
+        } else if let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: .now), (sevenDaysAgo ..< .now).contains(date) {
             return date.formatted(.dateTime.weekday(.wide).hour().minute())
         } else {
             return date.formatted(.dateTime.weekday(.abbreviated).day().month().year().hour().minute())
