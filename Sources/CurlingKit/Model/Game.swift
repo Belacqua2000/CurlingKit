@@ -95,7 +95,7 @@ public final class Game {
         
         case ends, final
         
-        var title: String {
+        public var title: String {
             switch self {
             case .ends: "By End"
             case .final: "Final Score Only"
