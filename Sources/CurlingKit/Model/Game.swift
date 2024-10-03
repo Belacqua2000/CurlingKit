@@ -90,7 +90,9 @@ public final class Game {
         }
     }
     
-    public enum ScoreCalculationMode: Int, Codable, Sendable, CaseIterable {
+    public enum ScoreCalculationMode: Int, Codable, Sendable, CaseIterable, Identifiable {
+        public var id: Int { rawValue }
+        
         case ends, final
         
         var title: String {
