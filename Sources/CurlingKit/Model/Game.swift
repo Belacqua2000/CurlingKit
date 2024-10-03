@@ -90,8 +90,17 @@ public final class Game {
         }
     }
     
-    public enum ScoreCalculationMode: Int, Codable {
+    public enum ScoreCalculationMode: Int, Codable, Sendable, CaseIterable {
         case ends, final
+        
+        var title: String {
+            switch self {
+            case .ends: "By End"
+            case .final: "Final Score Only"
+            }
+        }
+        
+        static let description = String(localized: "Log scores and shots for each end")
     }
     
     @Attribute(.allowsCloudEncryption)
