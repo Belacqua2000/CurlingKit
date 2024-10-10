@@ -22,7 +22,6 @@ public final class Game {
     @Attribute(.allowsCloudEncryption)
     public var date: Date = Date.now
     
-    // MARK: - Configuration
     /// The opposition team.
     @Attribute(.allowsCloudEncryption)
     public var opponent = String()
@@ -53,6 +52,10 @@ public final class Game {
     /// The ends of this game.
     @Relationship(deleteRule: .cascade, inverse: \End.game)
     public var ends: [End]? = []
+    
+    /// Whether this game should be included in statistics.
+    @Attribute(.allowsCloudEncryption)
+    public var includeInStatistics = true
     
     public var endCount: Int { ends?.count ?? 20}
     
@@ -90,15 +93,18 @@ public final class Game {
         }
     }
     
+    
+    // MARK: Scoring
     public enum ScoreCalculationMode: Int, Codable, Sendable, CaseIterable, Identifiable {
         public var id: Int { rawValue }
         
-        case ends, final
+        case ends, final, none
         
         public var title: String {
             switch self {
-            case .ends: "By End"
+            case .ends: "Each End"
             case .final: "Final Score Only"
+            case .none: "No Score"
             }
         }
         
@@ -106,26 +112,33 @@ public final class Game {
     }
     
     @Attribute(.allowsCloudEncryption)
-    public private(set) var scoreCalculation = ScoreCalculationMode.ends
+    public private(set) var scoreCalculation = ScoreCalculationMode.none
     
     /// The final score of the game of the user's team.
     ///
-    /// This can be entered manually if there are no ends, or can be calculated automatically using ``calculateScoresFromEnds()``
+    /// This can be entered manually if there are no ends, or can be calculated automatically using ``updateScoresFromEnds()``
     @Attribute(.allowsCloudEncryption)
     public var ownScore: Int = 0
     
     /// The final score of the game of the opposition team.
     ///
-    /// This can be entered manually if there are no ends, or can be calculated automatically using ``calculateScoresFromEnds()``
+    /// This can be entered manually if there are no ends, or can be calculated automatically using ``updateScoresFromEnds()``
     @Attribute(.allowsCloudEncryption)
     public var oppositionScore: Int = 0
     
     public func setScoreCalculation(to calculationMode: ScoreCalculationMode, numberOfEnds: Int = 8, using modelContext: ModelContext) {
         scoreCalculation = calculationMode
         
-        if calculationMode == .ends {
+        switch calculationMode {
+        case .ends:
             adjustEndCount(to: numberOfEnds, using: modelContext)
             updateScoresFromEnds()
+        case .final:
+            adjustEndCount(to: 0, using: modelContext)
+        case .none:
+            adjustEndCount(to: 0, using: modelContext)
+            ownScore = 0
+            oppositionScore = 0
         }
     }
     
@@ -237,7 +250,7 @@ public final class Game {
     }*/
     
     // MARK: - Functions
-//    public func dateChanged(oldDate: Date, newDate: Date) {
+//    public func dateChanged(from oldDate: Date, to newDate: Date) {
 //        if title == Self.defaultTitle(for: oldDate) {
 //            withAnimation {
 //                title = Self.defaultTitle(for: newDate)
