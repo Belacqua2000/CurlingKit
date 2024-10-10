@@ -87,7 +87,7 @@ public let previewGame: Game = {
 }()
 
 @MainActor
-extension Game {
+public extension Game {
     static let preview = try! previewContainer.mainContext.fetch(FetchDescriptor<Game>()).first!
     static let previewUnplayed: Game = {
         let game = Game(on: .now, against: "")

@@ -359,6 +359,9 @@
         }
       }
     },
+    "Log scores and shots for each end" : {
+
+    },
     "Lose" : {
       "comment" : "Game outcome title",
       "extractionState" : "stale",
