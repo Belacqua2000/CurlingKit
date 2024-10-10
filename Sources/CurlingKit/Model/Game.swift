@@ -55,7 +55,9 @@ public final class Game {
     
     /// Whether this game should be included in statistics.
     @Attribute(.allowsCloudEncryption)
-    public var includeInStatistics = true
+    public var neverIncludeInStatistics = false
+    
+    public var shouldIncludeInStatistics: Bool { !neverIncludeInStatistics && date < .now }
     
     public var endCount: Int { ends?.count ?? 20}
     
