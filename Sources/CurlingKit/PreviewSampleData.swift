@@ -87,6 +87,17 @@ public let previewGame: Game = {
 }()
 
 @MainActor
+extension Game {
+    static let preview = try! previewContainer.mainContext.fetch(FetchDescriptor<Game>()).first!
+    static let previewUnplayed: Game = {
+        let game = Game(on: .now, against: "")
+        game.position = .skip
+        previewContainer.mainContext.insert(game)
+        return game
+    }()
+}
+
+@MainActor
 let previewEnd: End = {
     try! previewContainer.mainContext.fetch(FetchDescriptor<Game>()).first!.ends!.first!
 }()
