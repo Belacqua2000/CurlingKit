@@ -32,13 +32,12 @@ extension ExportVersion {
         Logger.importer.debug("Loading URL with address: \(url.absoluteString)")
         let accessingSecurityScope = url.startAccessingSecurityScopedResource()
         Logger.importer.debug("Accessing security scope: \(accessingSecurityScope.description)")
-        defer {
-            if accessingSecurityScope {
-                url.stopAccessingSecurityScopedResource()
-            }
-        }
         let wrapper = try FileWrapper(url: url)
         self = try Self(fileWrapper: wrapper)
+        if accessingSecurityScope {
+            url.stopAccessingSecurityScopedResource()
+            Logger.importer.debug("Stopped accessing security scoped resource.")
+        }
     }
     
     public init(fileWrapper: FileWrapper) throws {
