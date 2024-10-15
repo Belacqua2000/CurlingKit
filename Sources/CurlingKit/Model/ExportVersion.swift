@@ -28,14 +28,15 @@ public protocol ExportVersion: Codable {
 }
 
 extension ExportVersion {
-    public init(url: URL, securityURL: Bool = true) throws {
-        Logger.importer.debug("Loading URL with address \(url.absoluteString) with security scope access \(securityURL)")
-        guard !securityURL || url.startAccessingSecurityScopedResource() else {
-            Logger.importer.debug("Failed to load URL")
-            throw CocoaError(.fileReadNoPermission)
+    public init(url: URL) throws {
+        Logger.importer.debug("Loading URL with address: \(url.absoluteString)")
+        let accessingSecurityScope = url.startAccessingSecurityScopedResource()
+        Logger.importer.debug("Accessing security scope: \(accessingSecurityScope.description)")
+        defer {
+            if accessingSecurityScope {
+                url.stopAccessingSecurityScopedResource()
+            }
         }
-        defer { url.stopAccessingSecurityScopedResource() }
-        
         let wrapper = try FileWrapper(url: url)
         self = try Self(fileWrapper: wrapper)
     }
