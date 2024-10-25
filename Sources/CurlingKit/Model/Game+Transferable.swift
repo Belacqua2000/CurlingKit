@@ -13,6 +13,8 @@ extension Game: Transferable {
     
     public static var transferRepresentation: some TransferRepresentation {
         
+//        CodableRepresentation(for: UUID.self, contentType: .game)
+        
         ProxyRepresentation(exporting: {
             CustomModelID(id: $0.stableIdentifier)
         })

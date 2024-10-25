@@ -7,16 +7,17 @@
 
 import CoreTransferable
 
-public struct CustomModelID: Transferable {
+public struct CustomModelID: Transferable, Codable {
     public let id: UUID
     public static var transferRepresentation: some TransferRepresentation {
-        ProxyRepresentation(exporting: \.id.uuidString) {
-            if let id = UUID(uuidString: $0) {
-                return CustomModelID(id: id)
-            } else {
-                throw TransferableError.invalidIDString(string: $0)
-            }
-        }
+        CodableRepresentation(contentType: .modelID)
+//        ProxyRepresentation(exporting: \.id.uuidString) {
+//            if let id = UUID(uuidString: $0) {
+//                return CustomModelID(id: id)
+//            } else {
+//                throw TransferableError.invalidIDString(string: $0)
+//            }
+//        }
     }
 }
 

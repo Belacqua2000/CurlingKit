@@ -9,4 +9,5 @@ import UniformTypeIdentifiers
 
 public extension UTType {
     static let game = UTType(exportedAs: "com.baughan.curling-game")
+    static let modelID = UTType(exportedAs: "com.baughan.model-id")
 }
