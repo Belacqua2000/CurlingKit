@@ -8,7 +8,7 @@
 import CoreTransferable
 
 public struct CustomModelID: Transferable {
-    let id: UUID
+    public let id: UUID
     public static var transferRepresentation: some TransferRepresentation {
         ProxyRepresentation(exporting: \.id.uuidString) {
             if let id = UUID(uuidString: $0) {
