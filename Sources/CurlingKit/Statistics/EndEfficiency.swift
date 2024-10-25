@@ -35,6 +35,17 @@ public struct EndEfficiency: Statistic, Identifiable {
         }
     )
     
+    public static let opponentHammerEfficiency = Self(
+        title: "Opponent Hammer Efficiency",
+        description: "Ends where the opponent had the hammer and scored ≥ 2.",
+        qualifiesForStatistic: { end in
+            end.teamWithHammer == .own
+        },
+        statisticMet: { end in
+            end.teamWithHammer == .opposition && end.scoringTeam == .opposition && end.score >= 2
+        }
+    )
+    
     public static let forceEfficiency = Self(
         title: "Force Efficiency",
         description: "Ends where your opponent had the hammer and scored 1.",
@@ -46,6 +57,17 @@ public struct EndEfficiency: Statistic, Identifiable {
         }
     )
     
+    public static let opponentForceEfficiency = Self(
+        title: "Opponent Force Efficiency",
+        description: "Ends where your team had the hammer and scored 1.",
+        qualifiesForStatistic: { end in
+            end.teamWithHammer == .own
+        },
+        statisticMet: { end in
+            end.teamWithHammer == .own && end.scoringTeam == .own && end.score == 1
+        }
+    )
+    
     public static let stealEfficiency = Self(
         title: "Steal Efficiency",
         description: "Ends where your opponent had the hammer and you scored.",
@@ -54,6 +76,17 @@ public struct EndEfficiency: Statistic, Identifiable {
         },
         statisticMet: { end in
             end.teamWithHammer == .opposition && end.scoringTeam == .own
+        }
+    )
+    
+    public static let opponentStealEfficiency = Self(
+        title: "Opponent Steal Efficiency",
+        description: "Ends where your team had the hammer and your opponent scored.",
+        qualifiesForStatistic: { end in
+            end.teamWithHammer == .own
+        },
+        statisticMet: { end in
+            end.teamWithHammer == .own && end.scoringTeam == .opposition
         }
     )
 }
