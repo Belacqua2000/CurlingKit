@@ -9,7 +9,14 @@ import CoreTransferable
 import UniformTypeIdentifiers
 
 extension Game: Transferable {
+    
+    
     public static var transferRepresentation: some TransferRepresentation {
+        
+        ProxyRepresentation(exporting: {
+            CustomModelID(id: $0.stableIdentifier)
+        })
+        .visibility(.ownProcess)
         
         FileRepresentation(
             exportedContentType: .game,
@@ -18,6 +25,8 @@ extension Game: Transferable {
             let url = try GameFile.Version1(from: game).url()
             return SentTransferredFile(url)
         }
+        
+        ProxyRepresentation(exporting: \.url)
         
         ProxyRepresentation(exporting: \.title)
     }

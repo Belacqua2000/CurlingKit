@@ -28,4 +28,6 @@ public final class Competition {
         self.title = title.isEmpty ? String(localized: "Untitled Competition", bundle: .module, comment: "Default competition title.") : title
 //        self.configuration = configuration
     }
+    
+    public var url: URL { URL(string: "www.nickbaughan.com/ailsa/app-data/competitions/\(stableIdentifier)")! }
 }
