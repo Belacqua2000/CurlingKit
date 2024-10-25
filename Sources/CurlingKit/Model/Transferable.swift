@@ -14,12 +14,12 @@ public struct CustomModelID: Transferable {
             if let id = UUID(uuidString: $0) {
                 return CustomModelID(id: id)
             } else {
-                throw TransferableError.invalidUUID
+                throw TransferableError.invalidIDString(string: $0)
             }
         }
     }
 }
 
 enum TransferableError: Error {
-    case invalidUUID
+    case invalidIDString(string: String)
 }
