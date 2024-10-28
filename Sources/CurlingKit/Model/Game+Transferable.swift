@@ -14,12 +14,6 @@ extension Game: Transferable {
     public static var transferRepresentation: some TransferRepresentation {
         
 //        CodableRepresentation(for: UUID.self, contentType: .game)
-        
-        ProxyRepresentation(exporting: {
-            CustomModelID(id: $0.stableIdentifier)
-        })
-        .visibility(.ownProcess)
-        
         FileRepresentation(
             exportedContentType: .game,
             shouldAllowToOpenInPlace: false)
@@ -28,7 +22,13 @@ extension Game: Transferable {
             return SentTransferredFile(url)
         }
         
+        ProxyRepresentation(exporting: {
+            CustomModelID(id: $0.stableIdentifier)
+        })
+        .visibility(.ownProcess)
+        
         ProxyRepresentation(exporting: \.url)
+        ProxyRepresentation(exporting: \.schemeUrl)
         
         ProxyRepresentation(exporting: \.title)
     }

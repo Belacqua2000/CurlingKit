@@ -62,6 +62,7 @@ public final class Game {
     public var endCount: Int { ends?.count ?? 20}
     
     public var url: URL { URL(string: "www.nickbaughan.com/ailsa/app-data/games/\(stableIdentifier)")! }
+    public var schemeUrl: URL { URL(string: "ailsa://app-data/games/\(stableIdentifier)")! }
     
     // MARK: - Outcomes
     
