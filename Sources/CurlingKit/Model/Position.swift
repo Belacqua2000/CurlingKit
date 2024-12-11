@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Charts
 
 /// The position in a curling team.
-public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable, Sendable {
+public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable, Sendable, Plottable {
     
     /// Sorts two positions by order of typical play.
     ///
@@ -45,6 +46,15 @@ public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable, Send
         case .skip:
             [7,8]
         }
+    }
+    
+    public var primitivePlottable: String {
+        title
+    }
+    
+    public init?(primitivePlottable: String) {
+        guard let value = Self.allCases.first(where: { $0.title == primitivePlottable }) else { return nil }
+        self = value
     }
     
     public var id: Int { rawValue }
