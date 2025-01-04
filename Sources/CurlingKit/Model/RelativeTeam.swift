@@ -8,7 +8,7 @@
 import Foundation
 import Charts
 
-public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable {
+public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable, Comparable {
     /// The user's own team.
     case own
     
@@ -41,4 +41,8 @@ public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable {
     }
     
     public static let allCases: [RelativeTeam] = [.own, .opposition]
+    
+    public static func < (lhs: RelativeTeam, rhs: RelativeTeam) -> Bool {
+        lhs.title < rhs.title
+    }
 }
