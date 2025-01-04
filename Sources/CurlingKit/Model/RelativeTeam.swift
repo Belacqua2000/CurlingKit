@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Charts
 
-public enum RelativeTeam: Codable, Sendable {
+public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable {
     /// The user's own team.
     case own
     
@@ -30,5 +31,14 @@ public enum RelativeTeam: Codable, Sendable {
         }
     }
     
-    static let allCases: [RelativeTeam] = [.own, .opposition]
+    public var primitivePlottable: String {
+        title
+    }
+    
+    public init?(primitivePlottable: String) {
+        guard let value = Self.allCases.first(where: { $0.title == primitivePlottable }) else { return nil }
+        self = value
+    }
+    
+    public static let allCases: [RelativeTeam] = [.own, .opposition]
 }
