@@ -113,6 +113,14 @@ public final class Game {
             }
         }
         
+        public var icon: String {
+            switch self {
+            case .ends: "list.number"
+            case .final: "sum"
+            case .none: "circle.slash"
+            }
+        }
+        
         static let description = String(localized: "Log scores and shots for each end")
     }
     
