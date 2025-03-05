@@ -8,7 +8,16 @@
 import Foundation
 import Charts
 
-public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable, Comparable {
+public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable, Comparable, Identifiable {
+    public var id: Int {
+        switch self {
+        case .own:
+            0
+        case .opposition:
+            1
+        }
+    }
+    
     /// The user's own team.
     case own
     
