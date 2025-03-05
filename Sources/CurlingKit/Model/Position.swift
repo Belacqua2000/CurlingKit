@@ -34,6 +34,20 @@ public enum Position: Int, Codable, CaseIterable, Identifiable, Comparable, Send
         }
     }
     
+    /// The symbol for the position.
+    public var icon: String {
+        switch self {
+        case .lead:
+            "1.circle"
+        case .second:
+            "2.circle"
+        case .third:
+            "3.circle"
+        case .skip:
+            "4.circle"
+        }
+    }
+    
     /// The stones which are typically played by the position.
     public var recommendedStones: Set<Int> {
         switch self {
