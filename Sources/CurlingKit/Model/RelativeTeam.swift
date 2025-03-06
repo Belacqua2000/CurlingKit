@@ -38,7 +38,7 @@ public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable, Comparable
         case .own:
             "circle"
         case .opposition:
-            "triangle"
+            "square"
         }
     }
     
