@@ -33,6 +33,15 @@ public enum RelativeTeam: Codable, Sendable, CaseIterable, Plottable, Comparable
         }
     }
     
+    public var icon: String {
+        switch self {
+        case .own:
+            "circle"
+        case .opposition:
+            "triangle"
+        }
+    }
+    
     mutating func toggle() {
         self = switch self {
         case .own: .opposition
