@@ -8,12 +8,12 @@
 import CoreTransferable
 import UniformTypeIdentifiers
 
-struct GameTransfer: Transferable {
-    let fileURL: URL
-    let stableIdentifier: UUID
-    let url: URL
-    let schemeURL: URL
-    let title: String
+public struct GameTransfer: Transferable {
+    public let fileURL: URL
+    public let stableIdentifier: UUID
+    public let url: URL
+    public let schemeURL: URL
+    public let title: String
     
     public static var transferRepresentation: some TransferRepresentation {
         
