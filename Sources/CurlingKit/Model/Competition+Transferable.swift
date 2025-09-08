@@ -7,7 +7,10 @@
 
 import CoreTransferable
 
-extension Competition: Transferable {
+struct CompetitionTransfer: Transferable {
+    let stableIdentifier: UUID
+    let url: URL
+    let title: String
     public static var transferRepresentation: some TransferRepresentation {
         
         ProxyRepresentation(exporting: {

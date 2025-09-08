@@ -8,8 +8,12 @@
 import CoreTransferable
 import UniformTypeIdentifiers
 
-extension Game: Transferable {
-    
+struct GameTransfer: Transferable {
+    let fileURL: URL
+    let stableIdentifier: UUID
+    let url: URL
+    let schemeURL: URL
+    let title: String
     
     public static var transferRepresentation: some TransferRepresentation {
         
@@ -18,8 +22,8 @@ extension Game: Transferable {
             exportedContentType: .game,
             shouldAllowToOpenInPlace: false)
         { game in
-            let url = try GameFile.Version1(from: game).url()
-            return SentTransferredFile(url)
+//            let url = try GameFile.Version1(from: game).url()
+            return SentTransferredFile(game.fileURL)
         }
         
         ProxyRepresentation(exporting: {
@@ -28,7 +32,7 @@ extension Game: Transferable {
         .visibility(.ownProcess)
         
         ProxyRepresentation(exporting: \.url)
-        ProxyRepresentation(exporting: \.schemeUrl)
+        ProxyRepresentation(exporting: \.schemeURL)
         
         ProxyRepresentation(exporting: \.title)
     }
