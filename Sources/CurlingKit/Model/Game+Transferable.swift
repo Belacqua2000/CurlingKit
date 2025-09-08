@@ -9,7 +9,15 @@ import CoreTransferable
 import UniformTypeIdentifiers
 
 public struct GameTransfer: Transferable {
-    public let fileURL: URL
+    public init(_ game: Game) {
+        self.fileURL = try? GameFile.Version1(from: game).url()
+        self.schemeURL = game.schemeUrl
+        self.stableIdentifier = game.stableIdentifier
+        self.title = game.title
+        self.url = game.url
+    }
+    
+    public let fileURL: URL?
     public let stableIdentifier: UUID
     public let url: URL
     public let schemeURL: URL
@@ -23,7 +31,11 @@ public struct GameTransfer: Transferable {
             shouldAllowToOpenInPlace: false)
         { game in
 //            let url = try GameFile.Version1(from: game).url()
-            return SentTransferredFile(game.fileURL)
+            if let fileURL = game.fileURL {
+                return SentTransferredFile(fileURL)
+            } else {
+                throw ExportError.noData
+            }
         }
         
         ProxyRepresentation(exporting: {

@@ -8,6 +8,12 @@
 import CoreTransferable
 
 public struct CompetitionTransfer: Transferable {
+    public init(_ competition: Competition) {
+        self.stableIdentifier = competition.stableIdentifier
+        self.url = competition.url
+        self.title = competition.title
+    }
+    
     public let stableIdentifier: UUID
     public let url: URL
     public let title: String
